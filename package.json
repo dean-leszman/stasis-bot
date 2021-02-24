@@ -1,0 +1,17 @@
+{
+  "name": "stasisbot_commando",
+  "version": "1.0.0",
+  "description": "Discord bot for Stasis",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Dean Leszman",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "discord.js-commando": "git+https://github.com/discordjs/Commando.git",
+    "dotenv": "^8.2.0"
+  }
+}
