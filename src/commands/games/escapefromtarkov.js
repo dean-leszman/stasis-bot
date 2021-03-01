@@ -239,7 +239,7 @@ function getAllMaps() {
             value: '<https://i.imgur.com/aUXxB3j.jpg>'
         }, {
             name: 'Labs',
-            value: '<https://i.imgur.com/pmMFfeY.png>'
+            value: '<https://www.gamemaps.co.uk/game/tarkov/maps/lab_explained_en>'
         }, {
             name: 'Reserve',
             value: '<https://i.imgur.com/ExJTzEU.jpg>'
