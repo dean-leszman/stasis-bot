@@ -205,6 +205,7 @@ function getMap(map) {
         case "LABS":
         case "LABORATORY":
             response = "https://www.gamemaps.co.uk/game/tarkov/maps/lab_explained_en";
+            break;
         case "RESERVE":
             response = "https://static.wikia.nocookie.net/escapefromtarkov_gamepedia/images/9/9f/Keys_and_doors_v3.png/revision/latest?cb=20191213063256";
             break;
