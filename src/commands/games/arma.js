@@ -56,7 +56,7 @@ function getLoadouts() {
 function getModList() {
     return new MessageEmbed()
     .setTitle('**ARMA 3 Mod List**')
-    .setDescription('[Mod Preset](https://discord.com/channels/398082048142737409/662409576380891146/802989209237454849)')
+    .setDescription('[Mod Preset](https://discord.com/channels/398082048142737409/662409576380891146/815952046217363498)')
     .setColor(0x48C9B0);
 }
 
