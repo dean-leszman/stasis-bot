@@ -15,7 +15,7 @@ ammoTypes["20 Gauge"] = {
 
 ammoTypes[".300"] = {
     name: '.300',
-    value: 'Budget Ammo: *.300 BPZ AAC Blackout*\nBest Ammo: *.300 AAC Blackout AP\nBest Weapon: *SIG MCX .300 AAC Blackout Assault Rifle*\n[View all .300 ammo](https://i.imgur.com/fSHclne.png)'
+    value: 'Budget Ammo: *.300 BPZ AAC Blackout*\nBest Ammo: *.300 AAC Blackout AP*\nBest Weapon: *SIG MCX .300 AAC Blackout Assault Rifle*\n[View all .300 ammo](https://i.imgur.com/fSHclne.png)'
 }
 
 ammoTypes[".338"] = {
