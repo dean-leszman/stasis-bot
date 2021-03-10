@@ -301,6 +301,8 @@ module.exports = class TarkovCommand extends Command {
             case "MAPS":
             case "MAP":
                 return message.say(getMap(type));
+            case "KEYS":
+                return message.say("https://i.imgur.com/7UbjEPq.png");
             case "HELP":
             case "":
                 return message.embed(getHelp());
