@@ -20,7 +20,7 @@ module.exports = class BubbleWrapCommand extends Command {
                 type: 'integer',
                 default: 5,
                 validate: size => {
-                    const valid = Number.size > 0 && size <= 10;
+                    const valid = size > 0 && size <= 10;
                     if (valid) return true;
 
                     return "Size must be between 1 and 10.";
