@@ -42,11 +42,8 @@ module.exports = class BubbleWrapCommand extends Command {
             response += "\n";
         }
         embed.setDescription(embed);
-
-        message.embed(embed);
-
         message.delete();
 
-        return response;
+        return message.embed(embed);
     }
 }
