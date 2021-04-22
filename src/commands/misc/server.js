@@ -59,7 +59,7 @@ module.exports = class ServerCommand extends Command {
             group: 'misc',
             memberName: 'server',
             description: 'Misc server commands',
-            clientPermissions: ['MANAGE_MESSAGES'],
+            userPermissions: ['MANAGE_MESSAGES'],
             throttling: {
                 usages: 1,
                 duration: 3
