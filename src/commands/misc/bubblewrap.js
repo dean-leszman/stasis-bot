@@ -17,7 +17,7 @@ module.exports = class BubbleWrapCommand extends Command {
             args: [{
                 key: 'size',
                 prompt: 'Please enter the size of grid (max 10)',
-                type: 'number',
+                type: 'integer',
                 default: 5,
                 validate: size => {
                     const valid = Number.size > 0 && size <= 10;
