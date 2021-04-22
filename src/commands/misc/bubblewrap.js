@@ -30,20 +30,16 @@ module.exports = class BubbleWrapCommand extends Command {
     }
 
     run(message, { size }) {
-        let embed = new MessageEmbed()
-            .setTitle("**Once you pop, you can't stop!**")
-            .setColor(0x000000);
-
-        let response = "";
+        let response = "**Once you pop, you can't stop!**";
         for (let i = 0; i < size; i++) {
+            response += "\n";
             for (let j = 0; j < size; j++) {
                 response += "||pop||";
             }
-            response += "\n";
         }
-        embed.setDescription(embed);
+
         message.delete();
 
-        return message.embed(embed);
+        return message.say(response);
     }
 }
