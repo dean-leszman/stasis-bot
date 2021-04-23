@@ -1,7 +1,7 @@
 const { Command } = require('discord.js-commando');
 const { MessageEmbed } = require('discord.js');
 const BOMB_RATIO = 0.2;
-const MAX_SIZE = 10;
+const MAX_SIZE = 9;
 
 module.exports = class MinesweeperCommand extends Command {
     constructor(client) {
@@ -18,14 +18,14 @@ module.exports = class MinesweeperCommand extends Command {
             },
             args: [{
                 key: 'size',
-                prompt: 'Please enter the size of grid (max 10)',
+                prompt: `Please enter the size of grid (max ${MAX_SIZE})`,
                 type: 'string',
                 default: 5,
                 validate: size => {
-                    const valid = size > 0 && size <= 10 || size === "help";
+                    const valid = size > 0 && size <= MAX_SIZE || size === "help";
                     if (valid) return true;
 
-                    return "size must be between 1 and 10.";
+                    return `size must be between 1 and ${MAX_SIZE}.`;
                 }
             }, {
                 key: 'bombs',
@@ -61,7 +61,6 @@ module.exports = class MinesweeperCommand extends Command {
             grid.push(row);
         }
 
-        console.log("PLACE");
         let bombsPlaced = 0;
         let maxBombs = bombs ? bombs : Math.floor(Math.pow(size, 2) * BOMB_RATIO);
         while (bombsPlaced < maxBombs) {
@@ -73,8 +72,6 @@ module.exports = class MinesweeperCommand extends Command {
                 bombsPlaced++;
             }
         }
-
-        console.log(grid);
 
         for (let j = 0; j < size; j++) {
             let counter = 0;
@@ -115,7 +112,7 @@ module.exports = class MinesweeperCommand extends Command {
             }
         }
 
-        let response = `**MINESWEEPER** (*${bombsPlaced} bombs*)`;
+        let response = "**MINESWEEPER** (*" + bombsPlaced + " bombs*)";
         for (let j = 0; j < size; j++) {
             response += "\n";
 
