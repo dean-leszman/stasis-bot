@@ -39,9 +39,3 @@ client.once('ready', () => { require('./src/events/onceReady')(client); });
     Login to Discord
 **************************************************/
 client.login(process.env.DISCORD_TOKEN);
-
-client.on('message', message => {
-    if (message.author.id == "187669174422732803") {
-        message.channel.send("Happy birthday Alice!");
-    }
-})
