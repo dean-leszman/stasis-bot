@@ -197,7 +197,7 @@ function getMap(map) {
             response = 'https://i.redd.it/li3qea6fl8e51.png';
             break;
         case "FACTORY":
-            response = "https://i.imgur.com/cvgiIeh.jpeg";
+            response = "https://i.imgur.com/h0sNjSc.png";
             break;
         case "INTERCHANGE":
             response = "https://static.wikia.nocookie.net/escapefromtarkov_gamepedia/images/e/e5/InterchangeMap_Updated_4.24.2020.png/revision/latest?cb=20200424115935";
