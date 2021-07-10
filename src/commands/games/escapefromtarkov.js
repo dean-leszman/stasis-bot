@@ -306,6 +306,8 @@ module.exports = class TarkovCommand extends Command {
             case "HELP":
             case "":
                 return message.embed(getHelp());
+            case "LOG":
+                return message.say("<https://docs.google.com/spreadsheets/d/1iOZH1bZD4jjhKNA-iwlW7_orvkbf4s0E3mpQahUJT7k/edit?usp=sharing>");
             default:
                 return message.say("Sorry, I didn't understand that request. For help, use `!tarkov help`.");
         }
