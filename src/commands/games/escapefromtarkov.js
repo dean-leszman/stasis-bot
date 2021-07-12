@@ -143,28 +143,16 @@ function getAmmoByType(type) {
 }
 
 function getAllAmmoTypes() {
-    return new MessageEmbed()
-        .setTitle("**Escape From Tarkov Ammo Types**")
-        .addFields(ammoTypes["12 Gauge"])
-        .addFields(ammoTypes["20 Gauge"])
-        .addFields(ammoTypes[".300"])
-        .addFields(ammoTypes[".338"])
-        .addFields(ammoTypes[".366"])
-        .addFields(ammoTypes[".45 ACP"])
-        .addFields(ammoTypes["4.6x30mm"])
-        .addFields(ammoTypes["5.45x39mm"])
-        .addFields(ammoTypes["5.56x45mm"])
-        .addFields(ammoTypes["5.7x28mm"])
-        .addFields(ammoTypes["7.62x25mm"])
-        .addFields(ammoTypes["7.62x39mm"])
-        .addFields(ammoTypes["7.62x51mm"])
-        .addFields(ammoTypes["7.62x54R"])
-        .addFields(ammoTypes["9x18mm"])
-        .addFields(ammoTypes["9x19mm"])
-        .addFields(ammoTypes["9x21mm"])
-        .addFields(ammoTypes["9x39mm"])
-        .addFields(ammoTypes["12.7x55mm"])
-        .setColor(0x48C9B0);
+    const resposne = new MessageEmbed()
+        .setTitle("**Escape From Tarkov Ammo Types**");
+
+    Object.keys(ammoTypes).forEach(key => {
+        response.addFields(ammoTypes[key]);
+    })
+
+    response.setColor(0x48C9B0);
+
+    return response;
 }
 
 function getMap(map) {
