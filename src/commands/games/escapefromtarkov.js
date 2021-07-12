@@ -112,7 +112,7 @@ function getHelp() {
         value: 'View the Escape From Tarkov help.'
     }, {
         name: '`!tarkov ammo [type]`',
-        value: 'View a selectable list of ammo types, or get information for a specific ammo type.\n*Example: `!tarkov ammo 9x19`*'
+        value: 'View information for a specific ammo type.\n*Example: `!tarkov ammo 9x19mm`*'
     }, {
         name: '`!tarkov <maps|map> [map]`',
         value: 'View a selectable list of maps, or get information for a specific map.\n*Example: `!tarkov map customs`*'
@@ -121,42 +121,21 @@ function getHelp() {
     .setColor(0x48C9B0);
 }
 
-
-const ammoRegex = [];
-
-ammoRegex["12 Gauge"] = /^(12(( |-)?G((au|ua)ge)?)?|Shotgun|MP\-?1(3|5)3|Saiga\-?(12)?|Slug)$/gi;
-ammoRegex["20 Gauge"] = /^(20(( |\-)?G((au|ua)ge)?)?|Shotgun|TOZ(\-| )?(106)?)$/gi;
-ammoRegex[".300"] = /^(\.?300) ?(blk|blackout)?$/gi;
-ammoRegex[".338"] = /^(\.?338 ?(Lapua)? ?(Magnum)?)|(Lapua)|(Magnum)$/gi;
-ammoRegex[".366"] = /^(\.?366)( TKM)?$/gi;
-ammoRegex[".45"] = /^((\.?45 ?(ACP)?)|(ACP)|M1911(A1)?)$/gi;
-ammoRegex["4.6x30mm"] = /^(4\.?6(x30)?(mm)?|MP7)$/gi;
-ammoRegex["5.45x39mm"] = /^(5\.?45(x39)?(mm)?|AKS?\-?(74(M|N|UB?)?|10[125])?)|RPK|5\.45$/gi;
-ammoRegex["5.56x45mm"] = /^(5\.?56(x45)?(mm)?)|M4((\-| )?A1)|HK((\-| )?416(A5)?)?|DT(\-| )?(MDR)?|MDR|TX(\-15)? ?(DML)?|5\.56$/gi;
-ammoRegex["5.7x28mm"] = /^(5\.?7(x28)?(mm)?)|(5|Five)(\-| )(7|Seven)|P(\-| )?90|5\.7$/gi;
-ammoRegex["7.62x25mm"] = /^(7\.?62(x25)?(mm)?|TT)|7\.62$/gi;
-ammoRegex["7.62x39mm"] = /^(7\.?62(x39)?(mm)?|AK\-?((MS?N?)|10[34])?)|(OP)?(\-| )?SKS$/gi;
-ammoRegex["7.62x51mm"] = /^(7\.?62(x51)?(mm)?)|M1A|SA\-?58|FAL|DT(\-| )?(MDR)?|MDR|RFB|RSASS|SR(\-| )?25|M(\-| )?700$/gi;
-ammoRegex["7.62x54R"] = /^(7\.?62(x54)?(R)?)|Mosin|SVDS?|SV(\-| )?98|T(\-| )?5000$/gi;
-ammoRegex["9x18mm"] = /^(9x18(mm)?)|PP\-?91|Kedr((\-| )B)?|Klin?$/gi;
-ammoRegex["9x19mm"] = /^(9x19(mm)?)|MP(5(\-?K)?|7|(9(\-?N)?)|X)|PP(\-| )?19|Saiga((\-| )?9)?|Glock(\-?17)?$/gi;
-ammoRegex["9x21mm"] = /^(9x21(mm)?)|SH?R?(1|I)MP$/gi;
-ammoRegex["9x39mm"] = /^(9x39(mm)?)|AS(\-| )?VAL|VSS$/gi;
-ammoRegex["12.7x55mm"] = /^(12\.?7x55)|Ash(\-| )?(12)?$/gi;
-ammoRegex["23x75mm"] = /^23x75(mm)?|KS-?23M?|Star|Flashbang$/gi;
-
 function getAmmoByType(type) {
     let messageEmbed = new MessageEmbed()
         .setTitle('**Escape From Tarkov Ammo**');
 
-    Object.keys(ammoRegex).forEach(key => {
-        if (ammoRegex[key].test(type)) {
-            messageEmbed.addFields(ammoTypes[key]);
-        }
-    })
-
-    if (messageEmbed.fields.length < 1) {
+    if (ammoTypes[type]) {
+        messageEmbed.addFields(ammoTypes[type]);
+    } else {
+        const ammo = Object.keys(ammoTypes).map(key => {
+            return key;
+        })
         messageEmbed.setTitle('Sorry, unable to find that ammo type.');
+        messageEmbed.addFields({
+            name: '**Supported Ammo Types**',
+            value: ammo
+        });
     }
 
     return messageEmbed
