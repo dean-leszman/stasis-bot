@@ -143,7 +143,7 @@ function getAmmoByType(type) {
 }
 
 function getAllAmmoTypes() {
-    const resposne = new MessageEmbed()
+    const response = new MessageEmbed()
         .setTitle("**Escape From Tarkov Ammo Types**");
 
     Object.keys(ammoTypes).forEach(key => {
