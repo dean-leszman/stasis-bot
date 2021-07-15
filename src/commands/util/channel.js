@@ -48,9 +48,15 @@ module.exports = class ChannelCommand extends Command {
         .then(channel => {
             setTimeout(() => {
                 if (!channel.members.first()) {
-                    channel.delete();
+                    channel.delete()
+                    .catch(err => {
+                        console.error("[Channel] Failed to delete channel: " + channel.name);
+                    });
                 }
             }, 15000);
+        })
+        .catch(err => {
+            console.error("Failed to create channel");
         });
 
         return message.say(`🎮 ${message.member.displayName}'s Room has been created.`);

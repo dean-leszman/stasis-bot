@@ -9,7 +9,10 @@ module.exports = function (oldState, newState) {
     if (oldState.channel) {
         if (!oldState.channel.members.first()) {
             if (!channels[oldState.channel.id]) {
-                oldState.channel.delete();
+                oldState.channel.delete()
+                .catch(err => {
+                    console.error("[Channel Generator] Failed to delete channel: " + oldState.channel.name, err);
+                });
             }
         }
     }
