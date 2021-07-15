@@ -50,7 +50,7 @@ module.exports = class ChannelCommand extends Command {
                 if (!channel.members.first()) {
                     channel.delete()
                     .catch(err => {
-                        console.error("[Channel] Failed to delete channel: " + channel.name);
+                        console.error("[Channel] Failed to delete channel.");
                     });
                 }
             }, 15000);

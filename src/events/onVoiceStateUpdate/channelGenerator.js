@@ -11,7 +11,7 @@ module.exports = function (oldState, newState) {
             if (!channels[oldState.channel.id]) {
                 oldState.channel.delete()
                 .catch(err => {
-                    console.error("[Channel Generator] Failed to delete channel: " + oldState.channel.name, err);
+                    console.error("[Channel Generator] Failed to delete channel: ", err);
                 });
             }
         }
