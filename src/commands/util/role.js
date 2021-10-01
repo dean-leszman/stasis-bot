@@ -86,12 +86,7 @@ module.exports = class RoleCommand extends Command {
         if (hasRole) {
             member.roles.remove(role)
             .then(() => {
-                this.message.say(`<@${member.id}>, you've been removed from ${role.name}.`)
-                .then(message => {
-                    setTimeout(() => {
-                        message.delete()
-                    }, 5000);
-                })
+                this.message.say(`<@${member.id}>, you've been removed from ${role.name}.`);
             })
             .catch(error => {
                 this.message.say("Failed to remove role.");
@@ -100,12 +95,7 @@ module.exports = class RoleCommand extends Command {
         } else {
             member.roles.add(role)
             .then(() => {
-                this.message.say(`<@${member.id}>, you've been added to ${role.name}.`)
-                .then(message => {
-                    setTimeout(() => {
-                        message.delete()
-                    }, 5000);
-                })
+                this.message.say(`<@${member.id}>, you've been added to ${role.name}.`);
             })
             .catch(error => {
                 this.message.say("Failed to add role.");
