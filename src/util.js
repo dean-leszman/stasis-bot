@@ -5,7 +5,6 @@ module.exports = {
         const embed = new MessageEmbed();
 
         embed.setTitle("Example title");
-        embed.setDescription("Example description");
         embed.setColor(0x1ABC9C);
 
         return embed;
