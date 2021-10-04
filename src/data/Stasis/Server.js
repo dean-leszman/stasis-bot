@@ -1,4 +1,8 @@
 module.exports = {
+    "JOINROLES": [ 
+        "768059886641741855", 
+        "484276740961730560"
+    ],
     "RULES": [{
         name: "**Use Common Sense**",
         value: "The server staff aren't here to babysit you. Keep it sensible."

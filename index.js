@@ -26,11 +26,13 @@ client.registry
 /**************************************************
     Events
 **************************************************/
+const onGuildMemberAdd = require('./src/events/onGuildMemberAdd');
 // const onMessage = require('./src/events/onMessage');
 const onVoiceStateUpdate = require('./src/events/onVoiceStateUpdate');
 
 client.on('error', console.error);
 // client.on('message', (message) => { onMessage(client, message); });
+client.on('guildMemberAdd', (member) => { onGuildMemberAdd(client, member); });
 client.on('voiceStateUpdate', (oldState, newState) => { onVoiceStateUpdate(oldState, newState); });
 
 client.once('ready', () => { require('./src/events/onceReady')(client); });
