@@ -14,17 +14,18 @@ module.exports = class UnknownCommandCommand extends Command {
     run(message) {
         const embed = new MessageEmbed()
         .setTitle("**Commands**")
-        .setDescription("A list of commands available via Stasis Bot.")
-        .addFields({
-            name: "**Escape From Tarkov**",
-            value: "Description: View information on Tarkov ammo types or maps.\nCommand: `!tarkov`\nAliases: `!eft`, `!escapefromtarkov`"
-        }, {
-            name: "**Papers, please.**",
-            value: "Description: Show a Papers, please style granted/denied stamp.\nCommand: `!papers`\nAliases: `!papersplease`, `!visa`"
-        }, {
-            name: "**Roll**",
-            value: "Description: Roll one or more dice. Supports repeated rolls, number of dice, value of dice, and modifier.\nCommand: `!roll`\nAliases: `!dice`"
-        })
+        .setDescription("**Games**\n" +
+            "`!arma` - ARMA 3\n" +
+            "`!destiny` - Destiny\n" +
+            "`!eft` - Escape From Tarkov\n\n" +
+            "**Miscellaneous**\n" +
+            "`!papers` - Papers, please responses\n" +
+            "`!rekt` - Rekt\n\n" +
+            "**Utility**\n" +
+            "`!poll` - Create a poll\n!" + 
+            "`!role` - Get roles\n" +
+            "`!server` - Admin-related commands\n"
+        )
         .setColor(0x48C9B0);
 
         return message.embed(embed);
