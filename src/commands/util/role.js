@@ -35,16 +35,17 @@ module.exports = class RoleCommand extends Command {
     getRoleHelp() {
         const embed = getBaseEmbed();
 
-        embed.setTitle("Role Help");
-        embed.setDescription("Join a role.");
-        embed.addFields({
+        embed.setTitle("Role Help")
+        .setDescription("Join a role.")
+        .addFields({
             name: "**Command Usage**",
             value: "`!role <role name>` - Join role\n" +
                 "`!role help` - View role help\n" +
                 "`!role colors` - View color roles\n" +
-                "`!role games` - View game roles\n"
-        });
-        embed.setFooter("Aliases: !role | !roles | !join")
+                "`!role games` - View game roles\n" +
+                "`!role icons` - View icon roles"
+        })
+        .setFooter("Aliases: !role | !roles | !join");
 
         this.message.embed(embed);
     }
@@ -118,6 +119,9 @@ module.exports = class RoleCommand extends Command {
             case "HELP":
             case "":
                 return this.getRoleHelp();
+            case "ICON":
+            case "ICONS":
+                return this.getRoles(roles.ICONS);
             default:
                 return this.parseRole(role);
         }
