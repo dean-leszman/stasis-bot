@@ -4,7 +4,7 @@ module.exports = {
     getBaseEmbed: () => {
         const embed = new MessageEmbed();
 
-        embed.setTitle("Example title");
+        embed.setTitle("Default title");
         embed.setColor(0x1ABC9C);
 
         return embed;
