@@ -24,5 +24,12 @@ module.exports = {
         if (!max) max = 1;
     
         return Math.floor((Math.random() * max) + 1);
+    },
+    parseArgs: function(args) {
+        const index = args.indexOf(" ");
+        const command = index === -1 ? args : args.slice(0, index);
+        const params = index !== -1 ? args.slice(index, args.length).trim() : null;
+
+        return [command, params];
     }
 }
