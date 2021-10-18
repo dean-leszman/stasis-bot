@@ -8,7 +8,7 @@ const {
     VAULT_OF_GLASS
 } = require('../../data/Destiny 2/RaidInfo');
 
-module.exports = class VisaCommand extends Command {
+module.exports = class Destiny extends Command {
     constructor(client) {
         super(client, {
             name: 'destiny',

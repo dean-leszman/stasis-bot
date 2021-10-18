@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 
 const { getBaseEmbed } = require("../../util");
 
-module.exports = class UnknownCommandCommand extends Command {
+module.exports = class EmbedCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'embed',
