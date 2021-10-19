@@ -27,6 +27,7 @@ module.exports = class ImageCommand extends Command {
         .then(() => {
             message.delete()
             .catch(console.error);
-        });
+        })
+        .catch(console.error);
     }
 }
