@@ -33,72 +33,72 @@ ammoTypes[".45"] = {
     value: 'Budget Ammo: *.45 ACP*\nBest Ammo: *.45 ACP AP*\nBest Weapon: *TDI KRISS Vector Gen.2 .45 ACP submachinegun*\n[View all .45 ACP ammo](https://i.imgur.com/ViUMpiw.png)'
 }
 
-ammoTypes["4.6x30MM"] = {
+ammoTypes["4.6X30MM"] = {
     name: '4.6x30mm',
     value: 'Budget Ammo: *4.6x30mm Subsonic SX*\nBest Ammo: *4.6x30mm AP SX*\nBest Weapon: *HK MP7A2 4.6x30 submachinegun*\n[View all 4.6x30mm ammo](https://i.imgur.com/xDk7kXn.png)'
 }
 
-ammoTypes["5.45x39MM"] = {
+ammoTypes["5.45X39MM"] = {
     name: '5.45x39mm',
     value: 'Budget Ammo: *5.45x39 mm BP*\nBest Ammo: *5.45x39 mm PPBS "Igolnik"*\nBest Weapon: *AK-74N*\n[View all 5.45x39mm ammo](https://i.imgur.com/GUsTYez.png)'
 }
 
-ammoTypes["5.56x45MM"] = {
+ammoTypes["5.56X45MM"] = {
     name: '5.56x45mm',
     value: 'Budget Ammo: *5.56x45 mm M856A1*\nBest Ammo: *5.56x45 mm M855A1*\nBest Weapon: *Colt M4A1 5.56x45 Assault Rifle*\n[View all 5.56x45mm ammo](https://i.imgur.com/tsWKo7o.png)'
 }
 
-ammoTypes["5.7x28MM"] = {
+ammoTypes["5.7X28MM"] = {
     name: '5.7x28mm',
     value: 'Budget Ammo: *5.7x28 mm L191*\nBest Ammo: *5.7x28 mm SB193*\nBest Weapon: *FN P90 5.7x28 submachinegun*\n[View all 5.7x28mm ammo](https://i.imgur.com/TLVajdW.png)'
 }
 
-ammoTypes["7.62x25MM"] = {
+ammoTypes["7.62X25MM"] = {
     name: '7.62x25mm',
     value: 'Best Ammo: *7.62x25mm TT Pst gzh*\nBest Weapon: *TT pistol 7.62x25 TT*\n[View all 7.62x25mm ammo](https://i.imgur.com/NvfADnL.png)'
 }
 
-ammoTypes["7.62x39MM"] = {
+ammoTypes["7.62X39MM"] = {
     name: '7.62x39mm',
     value: 'Budget Ammo: *7.62x39 mm PS*\nBest Ammo: *7.62x39 mm BP*\nBest Weapon: *AKM(N) 7.62x39 assault rifle*\n[View all 7.62x39mm ammo](https://i.imgur.com/OJcOpgE.png)'
 }
 
-ammoTypes["7.62x51MM"] = {
+ammoTypes["7.62X51MM"] = {
     name: '7.62x51mm',
     value: 'Budget Ammo: *7.62x51 mm M80*\nBest Ammo: *7.62x51 mm M61*\nBest Weapon: *Springfield Armory M1A 7.62x51*\n[View all 7.62x51mm ammo](https://i.imgur.com/KKQjvgN.png)'
 }
 
-ammoTypes["7.62x54R"] = {
+ammoTypes["7.62X54R"] = {
     name: '7.62x54R',
     value: 'Budget Ammo: *7.62x54R LPS Gzh*\nBest Ammo: *7.62x54R BS*\nBest Weapon: *SVDS 7.62x54 Sniper rifle*\n[View all 7.62x54R ammo](https://i.imgur.com/mGbOim1.png)'
 }
 
-ammoTypes["9x18MM"] = {
+ammoTypes["9X18MM"] = {
     name: '9x18mm',
     value: 'Budget Ammo: *9x18 mm PST gzh*\nBest Ammo: *9x18 mm PM PBM*\nBest Weapon: *PP-91 "Kedr"*\n[View all 9x18mm ammo](https://i.imgur.com/JAQOUmy.png)'
 }
 
-ammoTypes["9x19MM"] = {
+ammoTypes["9X19MM"] = {
     name: '9x19mm',
     value: 'Budget Ammo: *9x19 mm Pst gzh*\nBest Ammo: *9x19 mm PBP*\nBest Weapon: *SIG MPX 9x19 Submachine gun*\n[View all 9x19mm ammo](https://i.imgur.com/a5x91Aw.png)'
 }
 
-ammoTypes["9x21MM"] = {
+ammoTypes["9X21MM"] = {
     name: '9x21mm',
     value: 'Best Ammo: *9x21 mm BT (Tracer)*\nBest Weapon: *9x21 Seryukov automatic pistol SR1MP Gyurza*\n[View all 9x21mm ammo](https://i.imgur.com/x8vfv16.png)'
 }
 
-ammoTypes["9x39MM"] = {
+ammoTypes["9X39MM"] = {
     name: '9x39mm',
     value: 'Budget Ammo: *9x39 mm SP-5*\nBest Ammo: *9x39 mm BP*\nBest Weapon: *AS VAL*\n[View all 9x39mm ammo](https://i.imgur.com/njSHsgL.png)'
 }
 
-ammoTypes["12.7x55MM"] = {
+ammoTypes["12.7X55MM"] = {
     name: '12.7x55mm',
     value: 'Budget Ammo: *12.7x55 mm PS12*\nBest Ammo: *12.7x55 mm PS12B*\nBest Weapon: *ASh-12 12.7x55 assault rifle*\n[View all 12.7x55mm ammo](https://i.imgur.com/bvBsCNX.png)'
 }
 
-ammoTypes["23x75MM"] = {
+ammoTypes["23X75MM"] = {
     name: '23x75mm',
     value: 'Budget Ammo: *Shrapnel 10*\nBest Ammo: *"Barricade" Slug*\nMisc Ammo: *"Star" Flashbang Slug*\nBest Weapon: *TOZ KS-23M 23x75mm shotgun*\n[View all 23x75mm ammo](https://i.imgur.com/KaH7Fl2.png)'
 }
@@ -134,7 +134,9 @@ function getAmmoByType(type) {
         messageEmbed.setTitle('Sorry, unable to find that ammo type.');
         messageEmbed.addFields({
             name: '**Supported Ammo Types**',
-            value: ammo
+            value: ammo.map((key, value) => {
+                return value.name
+            })
         });
     }
 
