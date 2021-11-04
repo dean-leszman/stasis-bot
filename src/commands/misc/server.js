@@ -1,6 +1,4 @@
 const { Command } = require('discord.js-commando');
-const { MessageEmbed } = require('discord.js');
-
 const { getBaseEmbed } = require("../../util");
 const { RULES, TEXTCHANNELS } = require("../../data/Stasis/Server");
 

@@ -23,7 +23,6 @@ module.exports = {
         value: "All traffic through the border must present a valid citizen identity card or visa permit."
     }],
     "TEXTCHANNELS": [
-        "662409576380891146", // Arma 3
         "628924169630777363", // Destiny
         "791662222082310175", // Escape From Tarkov
         "447047848652177408", // Final Fantasy
