@@ -27,5 +27,11 @@ module.exports = {
         "791662222082310175", // Escape From Tarkov
         "447047848652177408", // Final Fantasy
         "619493278164975618", // Path of Exile
+    ],
+    "VOICECHANNELS": [
+        "🔇 A Quiet Place",
+        "Channel Creator",
+        "Big Boi Lounge",
+        "Santa's Grotto",
     ]
 }

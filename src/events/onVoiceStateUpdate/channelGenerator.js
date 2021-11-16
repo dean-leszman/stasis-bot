@@ -1,14 +1,10 @@
-const channels = {};
-channels["704340805346787379"] = true; // A Quiet Place
-channels["757629611919147251"] = true; // Channel Creator
-channels["704339593637396481"] = true; // Big Boi Lounge
+const { VOICECHANNELS } = require('../../data/Stasis/Server');
 
 /* Create a new voice channel when somebody joins the lobby voice channel */
 module.exports = function (oldState, newState) {
-    
     if (oldState.channel) {
         if (!oldState.channel.members.first()) {
-            if (!channels[oldState.channel.id]) {
+            if (!VOICECHANNELS.includes(oldState.channel.name)) {
                 oldState.channel.delete()
                 .catch(err => {
                     console.error("[Channel Generator] Failed to delete channel: ", err);
