@@ -1,15 +1,17 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { CHANNEL: config } = require('../data/Config');
 
+const command = new SlashCommandBuilder()
+    .setName('channel')
+    .setDescription('Create a private channel')
+    .addIntegerOption(option =>
+        option.setName('max_users')
+        .setDescription('Maximum number of users (Max 99)')
+        .setRequired(true)
+    );
+
 module.exports = {
-    data: new SlashCommandBuilder()
-        .setName('channel')
-        .setDescription('Create a private channel')
-        .addIntegerOption(option =>
-            option.setName('max_users')
-                .setDescription('Maximum number of users (Max 99)')
-                .setRequired(true)
-    ),
+    data: command,
     async execute(interaction) {
         await interaction.deferReply({ ephemeral: true });
 

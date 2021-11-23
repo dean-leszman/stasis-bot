@@ -1,5 +1,5 @@
 module.exports = {
-    "COLORS": {
+    'COLORS': {
         red: 0xF44336,
         pink: 0xE91E63,
         purple: 0x9C27B0,

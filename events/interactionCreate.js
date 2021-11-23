@@ -8,8 +8,6 @@ module.exports = {
         if (!command) return; // exit if the command does not exist
 
         try {
-            const now = new Date().toLocaleString('en-GB');
-            console.log(`[${now}] ${interaction.user.tag} (${interaction.user.id}) executed command '${interaction.commandName}'`);
             await command.execute(interaction);
         } catch (error) {
             console.error(error);
