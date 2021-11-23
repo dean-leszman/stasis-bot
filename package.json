@@ -13,5 +13,8 @@
     "discord.js": "^12.5.1",
     "discord.js-commando": "git+https://github.com/discordjs/Commando.git",
     "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.3.0"
   }
 }
