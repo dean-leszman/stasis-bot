@@ -1,43 +1,33 @@
 require('dotenv').config();
-
-const { CommandoClient } = require('discord.js-commando');
-const path = require('path');
+const fs = require('fs');
 const config = require('./config.json');
-const client = new CommandoClient({
-    commandPrefix: config.prefix,
-    owner: config.owner,
-    unknownCommandResponse: false
+const { Client, Collection, Intents } = require('discord.js');
+
+const client = new Client({ 
+    intents: [Intents.FLAGS.GUILDS],
+    presence: {
+        activities: config.activities
+    }
 });
 
-client.registry
-    .registerDefaultTypes()
-    .registerGroups([
-        ['games', 'Games'],
-        ['misc', 'Miscellaneous'],
-        ['util', 'Utilities']
-    ])
-    .registerDefaultGroups()
-    .registerDefaultCommands({
-        help: false,
-        unknownCommand: false
-    })
-    .registerCommandsIn(path.join(__dirname, 'src/commands'))
+client.commands = new Collection();
 
-/**************************************************
-    Events
-**************************************************/
-const onGuildMemberAdd = require('./src/events/onGuildMemberAdd');
-// const onMessage = require('./src/events/onMessage');
-const onVoiceStateUpdate = require('./src/events/onVoiceStateUpdate');
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
-client.on('error', console.error);
-// client.on('message', (message) => { onMessage(client, message); });
-client.on('guildMemberAdd', (member) => { onGuildMemberAdd(client, member); });
-client.on('voiceStateUpdate', (oldState, newState) => { onVoiceStateUpdate(oldState, newState); });
+for (const file of commandFiles) {
+	const command = require(`./commands/${file}`);
+	client.commands.set(command.data.name, command);
+}
 
-client.once('ready', () => { require('./src/events/onceReady')(client); });
+const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
-/**************************************************
-    Login to Discord
-**************************************************/
+for (const file of eventFiles) {
+	const event = require(`./events/${file}`);
+	if (event.once) {
+		client.once(event.name, (...args) => event.execute(...args));
+	} else {
+		client.on(event.name, (...args) => event.execute(...args));
+	}
+}
+
 client.login(process.env.DISCORD_TOKEN);

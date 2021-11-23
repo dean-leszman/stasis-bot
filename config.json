@@ -1,8 +1,9 @@
 {
-    "owner": "149982177008943104",
-    "commandPrefix": "!",
-    "activity": "Stasis Empire | !stasis",
+    "activities": [{
+        "name": "you",
+        "type": 3
+    }],
     "avatar": "https://i.imgur.com/lgsF1fu.png",
     "username": "Stasis Bot",
-    "debug": false
+    "debug": true
 }
