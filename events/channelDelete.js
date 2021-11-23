@@ -8,7 +8,7 @@ module.exports = {
         const logChannel = channel.guild.channels.cache.find(channel => channel.id === config.logChannel);
 
         const embed = new MessageEmbed()
-            .setTitle('**__Channel Deleted__**')
+            .setTitle('__Channel Deleted__')
             .addField('**Channel**', `${channel.name}\n${channel.id}`, true)
             .addField('**Parent**', `${channel.parent.name}\n${channel.parent.id}`, true)
             .addField('**Type**', `${channel.type}`, true)

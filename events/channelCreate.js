@@ -9,7 +9,7 @@ module.exports = {
         const logChannel = channel.guild.channels.cache.find(channel => channel.id === config.logChannel);
 
         const embed = new MessageEmbed()
-            .setTitle('**__Channel Created__**')
+            .setTitle('__Channel Created__')
             .addField('**Channel**', `${channelMention(channel.id)}\n${channel.id}`, true)
             .addField('**Parent**', `${channel.parent.name}\n${channel.parent.id}`, true)
             .addField('**Type**', `${channel.type}`, true)
