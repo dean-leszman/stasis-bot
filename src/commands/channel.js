@@ -3,10 +3,10 @@ const { CHANNEL: config } = require('../data/Config');
 
 const command = new SlashCommandBuilder()
     .setName('channel')
-    .setDescription('Create a private channel')
+    .setDescription('Create a private channel.')
     .addIntegerOption(option =>
         option.setName('max_users')
-        .setDescription('Maximum number of users (Max 99)')
+        .setDescription('Maximum number of users (Max 99).')
         .setRequired(true)
     );
 

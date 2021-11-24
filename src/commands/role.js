@@ -8,19 +8,19 @@ const { COLORS: colors } = require('../data/Static');
 
 const command = new SlashCommandBuilder()
     .setName('role')
-    .setDescription('Join or leave roles')
+    .setDescription('Manage your roles.')
     .addSubcommand(subcommand =>
         subcommand.setName('join')
-        .setDescription('Join a role')
+        .setDescription('Join a role.')
         .addStringOption(option =>
             option.setName('role_name')
-            .setDescription('Role name')
+            .setDescription('Role name.')
             .setRequired(true)
         )
     )
     .addSubcommand(subcommand =>
         subcommand.setName('leave')
-        .setDescription('Leave a role')
+        .setDescription('Leave a role.')
         .addStringOption(option =>
             option.setName('role_name')
             .setDescription('Role name')
@@ -29,10 +29,10 @@ const command = new SlashCommandBuilder()
     )
     .addSubcommand(subcommand =>
         subcommand.setName('list')
-        .setDescription('List available roles')
+        .setDescription('List available roles.')
         .addStringOption(option =>
             option.setName('type')
-            .setDescription('Type of roles to list')
+            .setDescription('Type of roles to view.')
             .addChoice('all', 'ALL')
             .addChoice('colors', 'COLORS')
             .addChoice('icons', 'ICONS')
