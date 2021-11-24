@@ -10,8 +10,6 @@ const command = new SlashCommandBuilder()
         .setRequired(true)
     );
 
-
-
 module.exports = {
     data: command,
     async execute(interaction) {
