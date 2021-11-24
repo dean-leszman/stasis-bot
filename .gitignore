@@ -11,3 +11,4 @@ npm-debug.log
 old/
 .vs
 .vscode
+src/commands/test.js
