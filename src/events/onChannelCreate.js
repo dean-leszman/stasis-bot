@@ -11,7 +11,7 @@ module.exports = {
         const embed = new MessageEmbed()
             .setTitle('__Channel Created__')
             .addField('**Channel**', `${channelMention(channel.id)}\n${channel.id}`, true)
-            .addField('**Parent**', `${channel.parent.name}\n${channel.parent.id}`, true)
+            .addField('**Parent**', `${channel.parent ? channel.parent.name : 'None'}\n${channel.parent ? channel.parent.id : 'None'}`, true)
             .addField('**Type**', `${channel.type}`, true)
             .setColor(colors.green)
             .setFooter(`Created on ${new Date().toLocaleString('en-GB')}`);

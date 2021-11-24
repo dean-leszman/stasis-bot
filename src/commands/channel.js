@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { CHANNEL: config } = require('../data/Config');
+const { CHANNEL_TYPES: channelType } = require('../data/Static');
 
 const command = new SlashCommandBuilder()
     .setName('channel')
@@ -19,13 +20,8 @@ module.exports = {
         
         const categoryChannel = interaction.guild.channels.cache.find(x => x.type === 'GUILD_CATEGORY' && x.name === config.categoryName);
 
-        if (!categoryChannel) {
-            interaction.editReply('Voice category not found. Please contact an admin.');
-            return;
-        }
-
         categoryChannel.createChannel(`🎮 ${interaction.member.displayName}'s Room`, {
-            type: 'GUILD_VOICE',
+            type: channelType.GUILD_VOICE,
             userLimit: userLimit,
             permissionOverwrites: [{
                 allow: 'MOVE_MEMBERS',

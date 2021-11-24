@@ -19,5 +19,19 @@ module.exports = {
         brown: 0x795548,
         grey: 0x9E9E9E,
         bluegrey: 0x607D8B
+    },
+    'CHANNEL_TYPES': {
+        GUILD_TEXT: 'GUILD_TEXT',
+        DM: 'DM',
+        GUILD_VOICE: 'GUILD_VOICE',
+        GROUP_DM: 'GROUP_DM',
+        GUILD_CATEGORY: 'GUILD_CATEGORY',
+        GUILD_NEWS: 'GUILD_NEWS',
+        GUILD_STORE: 'GUILD_STORE',
+        GUILD_NEWS_THREAD: 'GUILD_NEWS_THREAD',
+        GUILD_PUBLIC_THREAD: 'GUILD_PUBLIC_THREAD',
+        GUILD_PRIVATE_THREAD: 'GUILD_PRIVATE_THREAD',
+        GUILD_STAGE_VOICE: 'GUILD_STAGE_VOICE',
+        UNKNOWN: 'UNKNOWN'
     }
 };
