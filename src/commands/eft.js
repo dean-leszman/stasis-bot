@@ -19,38 +19,38 @@ function getMapInfo(mapName) {
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName('eft')
-    .setDescription('Escape From Tarkov commands.')
-    .addSubcommand(subcommand =>
-        subcommand.setName('map')
-        .setDescription('View map details.')
-        .addStringOption(option => {
-            option.setName('map_name')
-            .setDescription('The name of the map.')
-            .setRequired(true);
-    
-            for (const [key, value] of Object.entries(maps)) {
-                option.addChoice(value.name, key);
-            }
-    
-            return option;
-        })
-    )
-    .addSubcommand(subcommand =>
-        subcommand.setName('ammo')
-        .setDescription('View ammo details.')
-        .addStringOption(option => {
-            option.setName('ammo_type')
-            .setDescription('The type of ammo.')
-            .setRequired(true);
+        .setName('eft')
+        .setDescription('Escape From Tarkov commands.')
+        .addSubcommand(subcommand =>
+            subcommand.setName('map')
+            .setDescription('View map details.')
+            .addStringOption(option => {
+                option.setName('map_name')
+                .setDescription('The name of the map.')
+                .setRequired(true);
+        
+                for (const [key, value] of Object.entries(maps)) {
+                    option.addChoice(value.name, key);
+                }
+        
+                return option;
+            })
+        )
+        .addSubcommand(subcommand =>
+            subcommand.setName('ammo')
+            .setDescription('View ammo details.')
+            .addStringOption(option => {
+                option.setName('ammo_type')
+                .setDescription('The type of ammo.')
+                .setRequired(true);
 
-            for (const [key, value] of Object.entries(ammo)) {
-                option.addChoice(value.name, key);
-            }
+                for (const [key, value] of Object.entries(ammo)) {
+                    option.addChoice(value.name, key);
+                }
 
-            return option;
-        })
-    ),
+                return option;
+            })
+        ),
     async execute(interaction) {
         let embed;
 

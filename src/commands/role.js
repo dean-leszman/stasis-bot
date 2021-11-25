@@ -6,41 +6,6 @@ const { trimString } = require('../util');
 const { COLORS: colorRoles, ICONS: iconRoles, GAMES: gameRoles } = require('../data/Roles');
 const { COLORS: colors } = require('../data/Static');
 
-const command = new SlashCommandBuilder()
-    .setName('role')
-    .setDescription('Manage your roles.')
-    .addSubcommand(subcommand =>
-        subcommand.setName('join')
-        .setDescription('Join a role.')
-        .addStringOption(option =>
-            option.setName('role_name')
-            .setDescription('Role name.')
-            .setRequired(true)
-        )
-    )
-    .addSubcommand(subcommand =>
-        subcommand.setName('leave')
-        .setDescription('Leave a role.')
-        .addStringOption(option =>
-            option.setName('role_name')
-            .setDescription('Role name')
-            .setRequired(true)
-        )
-    )
-    .addSubcommand(subcommand =>
-        subcommand.setName('list')
-        .setDescription('List available roles.')
-        .addStringOption(option =>
-            option.setName('type')
-            .setDescription('Type of roles to view.')
-            .addChoice('all', 'ALL')
-            .addChoice('colors', 'COLORS')
-            .addChoice('icons', 'ICONS')
-            .addChoice('games', 'GAMES')
-            .setRequired(true)
-        )
-    );
-
 function getRoleEmbed(type) {
     const embed = new MessageEmbed()
         .setColor(colors.teal);
@@ -152,7 +117,40 @@ function handleViewRoles(interaction) {
 }
 
 module.exports = {
-    data: command,
+    data: new SlashCommandBuilder()
+        .setName('role')
+        .setDescription('Manage your roles.')
+        .addSubcommand(subcommand =>
+            subcommand.setName('join')
+            .setDescription('Join a role.')
+            .addStringOption(option =>
+                option.setName('role_name')
+                .setDescription('Role name.')
+                .setRequired(true)
+            )
+        )
+        .addSubcommand(subcommand =>
+            subcommand.setName('leave')
+            .setDescription('Leave a role.')
+            .addStringOption(option =>
+                option.setName('role_name')
+                .setDescription('Role name')
+                .setRequired(true)
+            )
+        )
+        .addSubcommand(subcommand =>
+            subcommand.setName('list')
+            .setDescription('List available roles.')
+            .addStringOption(option =>
+                option.setName('type')
+                .setDescription('Type of roles to view.')
+                .addChoice('all', 'ALL')
+                .addChoice('colors', 'COLORS')
+                .addChoice('icons', 'ICONS')
+                .addChoice('games', 'GAMES')
+                .setRequired(true)
+            )
+        ),
     async execute(interaction) {
         switch (interaction.options.getSubcommand()) {
             case 'join': {
