@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('coin')
+        .setName('coinflip')
         .setDescription('Flip a coin.'),
     async execute(interaction) {
         interaction.reply({
