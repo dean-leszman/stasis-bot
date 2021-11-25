@@ -47,7 +47,6 @@ function parseEmbedString(interaction, data) {
     // Description
     const description = data.match(/(?<=--description=")([^"]+)(?=")/ig);
     if (description && description.length === 1) {
-        console.log(description[0]);
         embed.setDescription(description[0]);
     }
     
