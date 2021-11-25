@@ -1,10 +1,5 @@
-const { MessageEmbed } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { COLORS: colors } = require('../data/Static');
-
-function wikiSearch(query) {
-
-}
+const { LEAGUES: leagues } = require('../data/PathOfExile');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -23,8 +18,19 @@ module.exports = {
         .setDescription('Open Stasis guild page.')
     )
     .addSubcommand(subcommand => 
-        subcommand.setName('leagues')
-        .setDescription('Open league guides.')
+        subcommand.setName('league')
+        .setDescription('League-specific cheatsheets.')
+        .addStringOption(option => {
+            option.setName('league_name')
+            .setDescription('The name of the league.')
+            .setRequired(true);
+
+            for (const [key, value] of Object.entries(leagues)) {
+                option.addChoice(value.name, key);
+            }
+
+            return option;
+        })
     )
     .addSubcommand(subcommand => 
         subcommand.setName('trade')
@@ -59,8 +65,10 @@ module.exports = {
                 break;
             }
             case 'league': {
+                const leagueName = interaction.options.getString('league_name');
+
                 interaction.reply({
-                    content: '<https://www.wraeclast.com/>'
+                    content: leagues[leagueName].url
                 });
                 break;
             }
