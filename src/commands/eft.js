@@ -1,7 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { COLORS: colors } = require('../data/Static');
-const { AMMO: ammo, MAPS: maps } = require('../data/EFT');
+const { AMMO: ammo, MAPS: maps } = require('../data/EscapeFromTarkov');
 
 function getAmmoInfo(ammoType) {
     return new MessageEmbed()
