@@ -1,9 +1,12 @@
 module.exports = {
-    "JOINROLES": [ 
-        "768059886641741855", 
-        "484276740961730560"
-    ],
-    "RULES": [{
+    'SERVER': {
+        logChannel: '552985239174250517'
+    },
+    'CHANNEL': { // 
+        categoryName: 'Voice',
+        deleteTimeout: 15 // delete channel after n seconds if it is empty
+    },
+    'RULES': [{
         name: "**Use Common Sense**",
         value: "The server staff aren't here to babysit you. Keep it sensible."
     }, {
@@ -22,16 +25,16 @@ module.exports = {
         name: "**Immigration Control**",
         value: "All traffic through the border must present a valid citizen identity card or visa permit."
     }],
-    "TEXTCHANNELS": [
+    'TEXTCHANNELS': [
         "628924169630777363", // Destiny
         "791662222082310175", // Escape From Tarkov
         "447047848652177408", // Final Fantasy
         "619493278164975618", // Path of Exile
     ],
-    "VOICECHANNELS": [
+    'VOICECHANNELS': [ // Names of voice channels that should not be deleted
         "🔇 A Quiet Place",
         "Channel Creator",
         "Big Boi Lounge",
-        "Santa's Grotto",
+        "Santa's Grotto"
     ]
 }

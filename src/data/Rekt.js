@@ -1,6 +1,4 @@
-const { Command } = require('discord.js-commando');
-
-const responses = [
+module.exports = [
     "12 Years A REKT",
     "2Girls1REKT",
     "50 Shades of REKT",
@@ -87,28 +85,4 @@ const responses = [
     "Witness ProtREKTion",
     "Xbox Series REKT",
     "You have the REKT to remain silent",
-];
-
-function getRekt() {
-    return responses[Math.floor(Math.random() * responses.length)];
-}
-
-module.exports = class RektCommand extends Command {
-    constructor(client) {
-        super(client, {
-            name: 'rekt',
-            aliases: ['wrecked', 'rekd'],
-            group: 'misc',
-            memberName: 'wrecked',
-            description: 'Brutal. Savage. Rekt.',
-            throttling: {
-                usages: 1,
-                duration: 3
-            }
-        });
-    }
-
-    run(message) {
-        return message.say(getRekt());
-    }
-}
+]

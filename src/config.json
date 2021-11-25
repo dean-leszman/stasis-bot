@@ -1,0 +1,9 @@
+{
+    "activities": [{
+        "name": "you",
+        "type": 3
+    }],
+    "avatar": "https://i.imgur.com/lgsF1fu.png",
+    "username": "Stasis Bot",
+    "debug": true
+}

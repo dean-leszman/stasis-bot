@@ -1,5 +1,7 @@
-const setActivity = require('./onceReady/setActivity');
-
-module.exports = function(client) {
-    setActivity(client);
-}
+module.exports = {
+    name: 'ready',
+    once: true,
+    async execute(client) {
+        console.log(`${client.user.tag} is ready.`);
+    }
+};
