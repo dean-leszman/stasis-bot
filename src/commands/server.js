@@ -60,7 +60,7 @@ module.exports = {
             }
         }
 
-        interaction.reply({
+        interaction.channel.send({
             embeds: [embed]
         });
     }

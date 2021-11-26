@@ -188,7 +188,7 @@ module.exports = {
             embed = parseEmbedString(interaction, text);
         }
 
-        interaction.reply({
+        interaction.channel.send({
             embeds: [embed]
         });
     }
