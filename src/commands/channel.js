@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { CHANNEL: config } = require('../data/Config');
-const { CHANNEL_TYPES: channelType } = require('../data/Static');
+const { Permissions } = require('discord.js');
+const { ChannelType } = require('discord-api-types/v9');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -19,10 +20,10 @@ module.exports = {
         const categoryChannel = interaction.guild.channels.cache.find(x => x.type === 'GUILD_CATEGORY' && x.name === config.categoryName);
 
         categoryChannel.createChannel(`🎮 ${interaction.member.displayName}'s Room`, {
-            type: channelType.GUILD_VOICE,
+            type: ChannelType.GuildVoice,
             userLimit: userLimit,
             permissionOverwrites: [{
-                allow: 'MOVE_MEMBERS',
+                allow: Permissions.FLAGS.MOVE_MEMBERS,
                 id: interaction.member.id,
                 type: 'member'
             }]

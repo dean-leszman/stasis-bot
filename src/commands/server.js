@@ -1,7 +1,7 @@
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed, Permissions } = require('discord.js');
 const { channelMention, SlashCommandBuilder } = require('@discordjs/builders');
 const { RULES: rules, TEXTCHANNELS: textChannels } = require('../data/Config');
-const { COLORS: colors, PERMISSIONS: permissions } = require('../data/Static');
+const { COLORS: colors } = require('../data/Static');
 
 function getRulesEmbed() {
     let description = '';
@@ -42,7 +42,7 @@ module.exports = {
             .setDescription('Create the text channels embed.')
         ),
     permissions: {
-        commands: [permissions.ADMINISTRATOR]
+        commands: [Permissions.FLAGS.ADMINISTRATOR]
     },
     async execute(interaction) {
         let embed;

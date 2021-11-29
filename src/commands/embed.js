@@ -1,6 +1,6 @@
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed, Permissions } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { COLORS: colors, PERMISSIONS: permissions } = require('../data/Static');
+const { COLORS: colors } = require('../data/Static');
 
 function getHelpEmbed() {
     return new MessageEmbed()
@@ -177,7 +177,7 @@ module.exports = {
             .setRequired(true)
         ),
     permissions: {
-        command: [permissions.MANAGE_MESSAGES]
+        command: [Permissions.FLAGS.MANAGE_MESSAGES]
     },
     async execute(interaction) {
         const text = interaction.options.getString('text');
