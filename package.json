@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "deploy": "node ./src/deploy-commands.js",
+    "remove": "node ./src/remove-commands.js",
     "start": "node ./src/index.js"
   },
   "author": "Dean Leszman",
