@@ -191,5 +191,10 @@ module.exports = {
         interaction.channel.send({
             embeds: [embed]
         });
+
+        interaction.reply({
+            content: `Embed created successfully:\n${text}`,
+            ephemeral: true
+        });
     }
 }
