@@ -79,7 +79,6 @@ module.exports = {
             }
 
             embed = createEmbed(args.shift(), args);
-            embed.setFooter(`Asked by ${interaction.member.displayName}`);
             length = args.length;
         }
 
