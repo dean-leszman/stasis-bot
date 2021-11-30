@@ -63,5 +63,10 @@ module.exports = {
         interaction.channel.send({
             embeds: [embed]
         });
+
+        interaction.reply({
+            content: 'Success!',
+            ephemeral: true
+        });
     }
 }
