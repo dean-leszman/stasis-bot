@@ -1,11 +1,9 @@
 const { MessageEmbed } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { COLORS: colors } = require('../data/Static');
-const { IPlayerService, ISteamApps, ISteamNews, ISteamUser, ISteamUserStats } = require('../data/Steam');
+const { IPlayerService, ISteamUser } = require('../data/Steam');
 const { STEAM_API_KEY } = process.env;
 const fetch = require('node-fetch');
-
-let _appList;
 
 /***************************************************
     Helper functions
@@ -116,65 +114,6 @@ async function Steam_GetSteamLevel(steamid) {
     });
 
     const api = IPlayerService.GetSteamLevel + queryString;
-    return await SteamAPI(api);
-}
-
-/***************************************************
-    Steam API functions - ISteamApps
-***************************************************/
-/**
- * Get badges for the account
- * @param {*} steamid SteamID64
- */
-async function Steam_GetAppList() {
-    const api = ISteamApps.GetAppList;
-    return await SteamAPI(api);
-}
-
-/***************************************************
-    Steam API functions - ISteamNews
-***************************************************/
-/**
- * Get badges for the account
- * @param {*} steamid SteamID64
- */
-async function Steam_GetNewsForApp(appid) {
-    const queryString = generateQueryString({
-        appid: appid
-    });
-
-    const api = ISteamNews.GetNewsForApp + queryString;
-    return await SteamAPI(api);
-}
-
-/***************************************************
-    Steam API functions - ISteamUser
-***************************************************/
-/**
- * Get friends list of the account
- * @param {*} steamid SteamID64
- */
-async function Steam_GetFriendList(steamid) {
-    const queryString = generateQueryString({
-        key: STEAM_API_KEY,
-        steamid: steamid
-    });
-
-    const api = ISteamUser.GetFriendList + queryString;
-    return await SteamAPI(api);
-}
-
-/**
- * Get bans of the account
- * @param {*} steamid SteamID64
- */
-async function Steam_GetPlayerBans(steamid) {
-    const queryString = generateQueryString({
-        key: STEAM_API_KEY,
-        steamid: steamid
-    });
-
-    const api = ISteamUser.GetPlayerBans + queryString;
     return await SteamAPI(api);
 }
 
