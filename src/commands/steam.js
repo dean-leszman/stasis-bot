@@ -200,7 +200,7 @@ async function getPlayerSummary(interaction) {
                 recentlyPlayed + `\n` +
                 
                 `**__Created__**\n` +
-                `${new Date(created).toLocaleString('en-GB')}`
+                `${new Date(created * 1000).toLocaleString('en-GB')}`
             )
             .setFooter(`Currently ${status}${status === 'Offline' ? " - Last seen " + new Date(lastLogOff * 1000).toLocaleString('en-GB') : ""}`)
             .setColor(colors.teal);
