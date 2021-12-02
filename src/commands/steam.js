@@ -10,24 +10,25 @@ let _appList;
 /***************************************************
     Helper functions
 ***************************************************/
+/**
+ * Generate a query string from supplied object
+ * @param {object} params 
+ */
 function generateQueryString(params) {
     let queryString = '';
-    params.map((entry, i) => {
-        const [key, value] = Object.entries(entry);
-
-        queryString += `${i === 0 ? "?" : "&"}${key}=`;
-        if (value instanceof Array) {
-            value.forEach((val, j) => {
-                result += `${j > 0 ? "," : ""}${val}`;
-            });
-        } else {
-            result += value;
-        }
-
-        return queryString;
+    Object.entries(params).forEach(([key, value], i) => {
+        queryString += `${ i === 0 ? "?" : "&" }${ key }=${ value }`;
     });
+
+    return queryString;
 }
 
+/**
+ * The user's current status.
+ * If the player's profile is private, this will always be "0", except is the user has set their status to looking to trade or looking to play, because a bug makes those status appear even if the profile is private.
+ * https://developer.valvesoftware.com/wiki/Steam_Web_API
+ * @param {number} status personastate
+ */
 function getPlayerStatus(status) {
     switch (status) {
         case 0: {
@@ -74,20 +75,6 @@ async function SteamAPI(api) {
     Steam API functions - IPlayerService
 ***************************************************/
 /**
- * Get badges for the account
- * @param {*} steamid SteamID64
- */
-async function Steam_GetBadges(steamid) {
-    const queryString = generateQueryString({
-        key: STEAM_API_KEY,
-        steamid: steamid
-    });
-
-    const api = IPlayerService.GetBadges + queryString;
-    return await SteamAPI(api);
-}
-
-/**
  * Get games owned by the account
  * @param {*} steamid SteamID64
  */
@@ -122,7 +109,7 @@ async function Steam_GetRecentlyPlayedGames(steamid) {
  * Get Steam level of the account
  * @param {*} steamid SteamID64
  */
-async function Steam_GetOwnedGames(steamid) {
+async function Steam_GetSteamLevel(steamid) {
     const queryString = generateQueryString({
         key: STEAM_API_KEY,
         steamid: steamid
@@ -198,24 +185,10 @@ async function Steam_GetPlayerBans(steamid) {
 async function Steam_GetPlayerSummaries(steamid) {
     const queryString = generateQueryString({
         key: STEAM_API_KEY,
-        steamid: steamid
+        steamids: steamid
     });
 
     const api = ISteamUser.GetPlayerSummaries + queryString;
-    return await SteamAPI(api);
-}
-
-/**
- * Resolve vanity URL into SteamID64
- * @param {*} vanityUrl Vaniry URL of account
- */
-async function Steam_GetUserGroupList(vanityUrl) {
-    const queryString = generateQueryString({
-        key: STEAM_API_KEY,
-        steamid: steamid
-    });
-
-    const api = ISteamUser.GetUserGroupList + queryString;
     return await SteamAPI(api);
 }
 
@@ -233,233 +206,140 @@ async function Steam_ResolveVanityUrl(vanityUrl) {
     return await SteamAPI(api);
 }
 
-/***************************************************
-    Bot functions - Game
-***************************************************/
-async function getAppList(interaction) {
-    await interaction.editReply({
-        content: 'getAppList',
-        ephemeral: true
-    });
-}
-
-async function getNewsForApp(interaction) {
-    await interaction.editReply({
-        content: 'getNewsForApp',
-        ephemeral: true
-    });
-}
-
-async function handleGame(interaction) {
-    const subcommand = interaction.options.getSubcommand();
-
-    switch (subcommand) {
-        case 'list': {
-            await getAppList(interaction);
-            break;
-        }
-        case 'news': {
-            await getNewsForApp(interaction);
-            break;
-        }
-    }
-}
-
 
 /***************************************************
     Bot functions - Player
 ***************************************************/
-async function getBadges(interaction) {
-    await interaction.editReply({
-        content: 'getBadges',
-        ephemeral: true
-    });
-}
+async function getPlayerSummary(interaction) {
+    const steamid = interaction.options.getString('steamid');
+    const summary = (await Steam_GetPlayerSummaries(steamid)).response;
+    const games = (await Steam_GetOwnedGames(steamid)).response;
+    const recent = (await Steam_GetRecentlyPlayedGames(steamid)).response;
+    const level = (await Steam_GetSteamLevel(steamid)).response;
 
-async function getFriendList(interaction) {
-    await interaction.editReply({
-        content: 'getFriendList',
-        ephemeral: true
-    });
-}
+    if (
+        (summary && summary.players && summary.players.length > 0) &&
+        (games && games.games && games.games.length > 0) &&
+        (recent && recent.games && recent.games.length > 0) &&
+        (level)
+    ) {
+        const player = summary.players[0];
 
-async function getOwnedGames(interaction) {
-    await interaction.editReply({
-        content: 'getOwnedGames',
-        ephemeral: true
-    });
-}
+        const name = player.personaname;
+        const avatar = player.avatarfull;
+        const url = player.profileurl;
+        const lastLogOff = player.lastlogoff;
+        const status = getPlayerStatus(player.personastate);
+        const created = player.timecreated;
+        const playerLevel = level.player_level;
 
-async function getRecentlyPlayerGames(interaction) {
-    await interaction.editReply({
-        content: 'getRecentlyPlayedGames',
-        ephemeral: true
-    });
-}
+        let mostPlayed = '';
+        games.games.sort((a, b) => b.playtime_forever - a.playtime_forever)
+            .slice(0, 10)
+            .map(game => {
+                mostPlayed += `**${game.name}** - ${Math.round(game.playtime_forever / 60)} hours\n`;
+            });
 
-async function getPlayerBans(interaction) {
-    await interaction.editReply({
-        content: 'getPlayerBans',
-        ephemeral: true
-    });
-}
+        let recentlyPlayed = '';
+        recent.games.sort((a, b) => b.playtime_2weeks - a.playtime_2weeks)
+            .slice(0, 5)
+            .map(game => {
+                recentlyPlayed += `**${game.name}** - ${Math.round(game.playtime_2weeks / 60)} hours\n`;
+            });
 
-async function getPlayerSummaries(interaction) {
-    await interaction.editReply({
-        content: 'getPlayerSummaries',
-        ephemeral: true
-    });
-}
+        const embed = new MessageEmbed()
+            .setAuthor(`${name} - Level ${playerLevel}`, avatar, url)
+            .setTitle(`Steam Account Summary`)
+            .setDescription(
+                `**__Total Games Owned__**\n` +
+                `${games.game_count}\n\n` +
 
-async function getSteamLevel(interaction) {
-    await interaction.editReply({
-        content: 'getSteamLevel',
-        ephemeral: true
-    });
-}
+                `**__Most Played Games__**\n` +
+                mostPlayed + `\n` +
 
-async function getUserGroupList(interaction) {
-    await interaction.editReply({
-        content: 'getUserGroupList',
-        ephemeral: true
-    });
+                `**__Recently Played Games__** (*Past 2 weeks*)\n` +
+                recentlyPlayed + `\n` +
+                
+                `**__Created__**\n` +
+                `${new Date(created).toLocaleString('en-GB')}`
+            )
+            .setFooter(`Currently ${status}${status === 'Offline' ? " - Last seen " + new Date(lastLogOff * 1000).toLocaleString('en-GB') : ""}`)
+            .setColor(colors.teal);
+
+        await interaction.editReply({
+            embeds: [embed]
+        });
+    } else {
+        await interaction.editReply({
+            content: '[Error] Unable to fetch details for this user.'
+        });
+    }
 }
 
 async function resolveVanityUrl(interaction) {
-    await interaction.editReply({
-        content: 'resolveVanityUrl',
-        ephemeral: true
-    });
-}
+    const vanityurl = interaction.options.getString('vanityurl');
+    const response = (await Steam_ResolveVanityUrl(vanityurl)).response;
 
-async function handlePlayer(interaction) {
-    const subcommand = interaction.options.getSubcommand();
-
-    switch (subcommand) {
-        case 'badges': {
-            await getBadges(interaction);
-            break;
+    let embed = new MessageEmbed()
+        .setTitle('Steam ID')
+        .setColor(colors.teal);
+    
+    if (response && response.success) {
+        switch (response.success) {
+            case 1: {
+                embed.setDescription(`**Vanity URL:** ${vanityurl}\n**Steam ID:** ${response.steamid}`)
+                break;
+            }
+            case 42: {
+                embed.setDescription('Failed to find a user with that vanity name.')
+                .setColor(colors.red);
+                break;
+            }
         }
-        case 'bans': {
-            await getPlayerBans(interaction);
-            break;
-        }
-        case 'friends': {
-            await getFriendList(interaction);
-            break;
-        }
-        case 'group': {
-            await getUserGroupList(interaction);
-            break;
-        }
-        case 'level': {
-            await getSteamLevel(interaction);
-            break;
-        }
-        case 'owned': {
-            await getOwnedGames(interaction);
-            break;
-        }
-        case 'recent': {
-            await getRecentlyPlayerGames(interaction);
-            break;
-        }
-        case 'summary': {
-            await getPlayerSummaries(interaction);
-            break;
-        }
+    } else {
+        embed.setDescription('Failed to contact Steam servers. Please try again later.')
+        .setColor(colors.red);
     }
+
+    await interaction.editReply({
+        embeds: [embed]
+    });
 }
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('steam')
         .setDescription('Steam related commands.')
-        .addSubcommandGroup(group => 
-            group.setName('player')
-            .setDescription('Player related commands')
-            .addSubcommand(subcommand => 
-                subcommand.setName('badges')
-                .setDescription('Get badges for a Steam user.')
-                .addStringOption(option => 
-                    option.setName('steamid')
-                    .setDescription('SteamID64 of the account.')
-                    .setRequired(true)
-                )
-            )
-            .addSubcommand(subcommand => 
-                subcommand.setName('bans')
-                .setDescription('Get bans for a Steam user.')
-                .addStringOption(option => 
-                    option.setName('steamid')
-                    .setDescription('SteamID64 of the account.')
-                    .setRequired(true)
-                )
-            )
-            .addSubcommand(subcommand => 
-                subcommand.setName('friends')
-                .setDescription('Get friends list for a Steam user.')
-                .addStringOption(option => 
-                    option.setName('steamid')
-                    .setDescription('SteamID64 of the account.')
-                    .setRequired(true)
-                )
-            )
-            .addSubcommand(subcommand => 
-                subcommand.setName('level')
-                .setDescription('Get level for a Steam user.')
-                .addStringOption(option => 
-                    option.setName('steamid')
-                    .setDescription('SteamID64 of the account.')
-                    .setRequired(true)
-                )
-            )
-            .addSubcommand(subcommand => 
-                subcommand.setName('owned')
-                .setDescription('Get owned games for a Steam user.')
-                .addStringOption(option => 
-                    option.setName('steamid')
-                    .setDescription('SteamID64 of the account.')
-                    .setRequired(true)
-                )
-            )
-            .addSubcommand(subcommand => 
-                subcommand.setName('recent')
-                .setDescription('Get recently played games for a Steam user.')
-                .addStringOption(option => 
-                    option.setName('steamid')
-                    .setDescription('SteamID64 of the account.')
-                    .setRequired(true)
-                )
+        .addSubcommand(subcommand =>
+            subcommand.setName('id')
+            .setDescription('Get the SteamID64 of an account.')
+            .addStringOption(option => 
+                option.setName('vanityurl')
+                .setDescription('Vanity URL of the user.')
+                .setRequired(true)
             )
         )
-        .addSubcommandGroup(group => 
-            group.setName('game')
-            .setDescription('Game related commands')
-            .addSubcommand(subcommand => 
-                subcommand.setName('news')
-                .setDescription('Get news for a Steam game.')
-                .addStringOption(option => 
-                    option.setName('appid')
-                    .setDescription('AppId of the game.')
-                    .setRequired(true)
-                )
+        .addSubcommand(subcommand =>
+            subcommand.setName('player')
+            .setDescription('Get a summary of a Steam user.')
+            .addStringOption(option => 
+                option.setName('steamid')
+                .setDescription('SteamID64 of the user.')
+                .setRequired(true)
             )
         ),
     async execute(interaction) {
-        const group = interaction.options.getSubcommandGroup();
+        const subcommand = interaction.options.getSubcommand();
 
-        await interaction.deferReply({
-            ephemeral: true
-        });
+        await interaction.deferReply();
 
-        switch (group) {
-            case 'game': {
-                await handleGame(interaction);
+        switch (subcommand) {
+            case 'id': {
+                await resolveVanityUrl(interaction);
                 break;
             }
             case 'player': {
-                await handlePlayer(interaction);
+                await getPlayerSummary(interaction);
                 break;
             }
         }
