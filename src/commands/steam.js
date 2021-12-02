@@ -89,49 +89,6 @@ async function Steam_GetOwnedGames(steamid) {
 }
 
 /**
- * Get recently played games of the account
- * @param {*} steamid SteamID64
- */
-async function Steam_GetRecentlyPlayedGames(steamid) {
-    const queryString = generateQueryString({
-        key: STEAM_API_KEY,
-        steamid: steamid,
-        count: 10
-    });
-
-    const api = IPlayerService.GetRecentlyPlayedGames + queryString;
-    return await SteamAPI(api);
-}
-
-/**
- * Get Steam level of the account
- * @param {*} steamid SteamID64
- */
-async function Steam_GetSteamLevel(steamid) {
-    const queryString = generateQueryString({
-        key: STEAM_API_KEY,
-        steamid: steamid
-    });
-
-    const api = IPlayerService.GetSteamLevel + queryString;
-    return await SteamAPI(api);
-}
-
-/**
- * Get summary of the account
- * @param {*} steamid SteamID64
- */
-async function Steam_GetPlayerSummaries(steamid) {
-    const queryString = generateQueryString({
-        key: STEAM_API_KEY,
-        steamids: steamid
-    });
-
-    const api = ISteamUser.GetPlayerSummaries + queryString;
-    return await SteamAPI(api);
-}
-
-/**
  * Get user groups of the account
  * @param {*} vanityUrl Vaniry URL of account
  */
@@ -149,72 +106,6 @@ async function Steam_ResolveVanityUrl(vanityUrl) {
 /***************************************************
     Bot functions - Player
 ***************************************************/
-async function getPlayerSummary(interaction) {
-    const steamid = interaction.options.getString('steamid');
-    const summary = (await Steam_GetPlayerSummaries(steamid)).response;
-    const games = (await Steam_GetOwnedGames(steamid)).response;
-    const recent = (await Steam_GetRecentlyPlayedGames(steamid)).response;
-    const level = (await Steam_GetSteamLevel(steamid)).response;
-
-    if (
-        (summary && summary.players && summary.players.length > 0) &&
-        (games && games.games && games.games.length > 0) &&
-        (recent && recent.games && recent.games.length > 0) &&
-        (level)
-    ) {
-        const player = summary.players[0];
-
-        const name = player.personaname;
-        const avatar = player.avatarfull;
-        const url = player.profileurl;
-        const lastLogOff = player.lastlogoff;
-        const status = getPlayerStatus(player.personastate);
-        const created = player.timecreated;
-        const playerLevel = level.player_level;
-
-        let mostPlayed = '';
-        games.games.sort((a, b) => b.playtime_forever - a.playtime_forever)
-            .slice(0, 10)
-            .map(game => {
-                mostPlayed += `**${game.name}** - ${Math.round(game.playtime_forever / 60)} hours\n`;
-            });
-
-        let recentlyPlayed = '';
-        recent.games.sort((a, b) => b.playtime_2weeks - a.playtime_2weeks)
-            .slice(0, 5)
-            .map(game => {
-                recentlyPlayed += `**${game.name}** - ${Math.round(game.playtime_2weeks / 60)} hours\n`;
-            });
-
-        const embed = new MessageEmbed()
-            .setAuthor(`${name} - Level ${playerLevel}`, avatar, url)
-            .setTitle(`Steam Account Summary`)
-            .setDescription(
-                `**__Total Games Owned__**\n` +
-                `${games.game_count}\n\n` +
-
-                `**__Most Played Games__**\n` +
-                mostPlayed + `\n` +
-
-                `**__Recently Played Games__** (*Past 2 weeks*)\n` +
-                recentlyPlayed + `\n` +
-                
-                `**__Created__**\n` +
-                `${new Date(created * 1000).toLocaleString('en-GB')}`
-            )
-            .setFooter(`Currently ${status}${status === 'Offline' ? " - Last seen " + new Date(lastLogOff * 1000).toLocaleString('en-GB') : ""}`)
-            .setColor(colors.teal);
-
-        await interaction.editReply({
-            embeds: [embed]
-        });
-    } else {
-        await interaction.editReply({
-            content: '[Error] Unable to fetch details for this user.'
-        });
-    }
-}
-
 async function resolveVanityUrl(interaction) {
     const vanityurl = interaction.options.getString('vanityurl');
     const response = (await Steam_ResolveVanityUrl(vanityurl)).response;
@@ -257,15 +148,6 @@ module.exports = {
                 .setDescription('Vanity URL of the user.')
                 .setRequired(true)
             )
-        )
-        .addSubcommand(subcommand =>
-            subcommand.setName('player')
-            .setDescription('Get a summary of a Steam user.')
-            .addStringOption(option => 
-                option.setName('steamid')
-                .setDescription('SteamID64 of the user.')
-                .setRequired(true)
-            )
         ),
     async execute(interaction) {
         const subcommand = interaction.options.getSubcommand();
@@ -275,10 +157,6 @@ module.exports = {
         switch (subcommand) {
             case 'id': {
                 await resolveVanityUrl(interaction);
-                break;
-            }
-            case 'player': {
-                await getPlayerSummary(interaction);
                 break;
             }
         }
