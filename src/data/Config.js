@@ -27,6 +27,7 @@ module.exports = {
     }],
     'TEXTCHANNELS': [
         "628924169630777363", // Destiny
+        "808380003951575060", // Eco
         "791662222082310175", // Escape From Tarkov
         "447047848652177408", // Final Fantasy
         "619493278164975618", // Path of Exile
