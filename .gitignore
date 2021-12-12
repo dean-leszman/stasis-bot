@@ -12,3 +12,4 @@ old/
 .vs
 .vscode
 src/commands/test.js
+*.sqlite
