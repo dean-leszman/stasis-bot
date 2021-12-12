@@ -11,10 +11,19 @@ function getAmmoInfo(ammoType) {
 }
 
 function getMapInfo(mapName) {
-    return new MessageEmbed()
+    const embed = new MessageEmbed()
         .setTitle(`Escape From Tarkov - ${maps[mapName].name}`)
-        .setImage(maps[mapName].url)
         .setColor(colors.teal);
+
+    if (maps[mapName].content) {
+        embed.setDescription(maps[mapName].content);
+    }
+
+    if (maps[mapName].url) {
+        embed.setImage(maps[mapName].url);
+    }
+        
+    return embed;
 }
 
 module.exports = {

@@ -99,8 +99,8 @@ module.exports = {
             url: 'https://www.gamemaps.co.uk/game/tarkov/maps/lab_explained_en'
         },
         'LIGHTHOUSE': {
-            name: 'Lighthouse',
-            url: 'Lighthouse map pending...'
+            content: 'Lighthouse map pending...',
+            name: 'Lighthouse'
         },
         'RESERVE': {
             name: 'Reserve',
