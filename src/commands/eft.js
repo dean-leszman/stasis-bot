@@ -69,6 +69,7 @@ module.exports = {
         }
 
         interaction.reply({
+            content: 'Information may be outdated with the 12.12 update.',
             embeds: [embed]
         });
     }

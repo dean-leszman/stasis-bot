@@ -88,7 +88,7 @@ module.exports = {
         },
         'FACTORY': {
             name: 'Factory',
-            url: 'https://i.imgur.com/yYRHXD9.jpg'
+            url: 'https://i.imgur.com/30p9WpE.png'
         },
         'INTERCHANGE': {
             name: 'Interchange',
@@ -97,6 +97,10 @@ module.exports = {
         'LABS': {
             name: 'Labs',
             url: 'https://www.gamemaps.co.uk/game/tarkov/maps/lab_explained_en'
+        },
+        'LIGHTHOUSE': {
+            name: 'Lighthouse',
+            url: 'Lighthouse map pending...'
         },
         'RESERVE': {
             name: 'Reserve',
