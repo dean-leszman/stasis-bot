@@ -100,7 +100,7 @@ module.exports = {
         },
         'LIGHTHOUSE': {
             name: 'Lighthouse',
-            url: 'https://i.imgur.com/DKzBs9a.png'
+            url: 'https://i.imgur.com/spVOhzY.png'
         },
         'RESERVE': {
             name: 'Reserve',
