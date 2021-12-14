@@ -27,6 +27,7 @@ module.exports = {
     'ICONS': [
         { id: '894863416261500970', name: 'Blue Gem' }, 
         { id: '894598572316717116', name: 'Gun' }, 
+        { id: '920328578133008445', name: 'Hydrohomie' },
         { id: '894863568288239647', name: 'Orange Gem' }, 
         { id: '893490093933883392', name: 'Orange Red Gem' }, 
         { id: '893489938736226344', name: 'Purple Gem' }, 
