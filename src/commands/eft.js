@@ -52,6 +52,14 @@ module.exports = {
 
                 return option;
             })
+        )
+        .addSubcommand(subcommand =>
+            subcommand.setName('wiki')
+            .setDescription('Search via EFT wiki.')
+            .addStringOption(option => 
+                option.setName('query')
+                .setDescription('Search query.')
+            )
         ),
     async execute(interaction) {
         let embed;
@@ -63,6 +71,13 @@ module.exports = {
             }
             case 'map': {
                 embed = getMapInfo(interaction.options.getString('map_name'));
+                break;
+            }
+            case 'wiki': {
+                const query = interaction.options.getString('query');
+                interaction.reply({
+                    content: `https://escapefromtarkov.fandom.com/${query ? 'wiki/Special:Search?query=' + encodeURIComponent(query) : ''}>`
+                });
                 break;
             }
             default: {
