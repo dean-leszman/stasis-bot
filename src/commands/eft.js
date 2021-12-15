@@ -76,7 +76,7 @@ module.exports = {
             case 'wiki': {
                 const query = interaction.options.getString('query');
                 interaction.reply({
-                    content: `https://escapefromtarkov.fandom.com/${query ? 'wiki/Special:Search?query=' + encodeURIComponent(query) : ''}>`
+                    content: `<https://escapefromtarkov.fandom.com/${query ? 'wiki/Special:Search?query=' + encodeURIComponent(query) : ''}>`
                 });
                 break;
             }
