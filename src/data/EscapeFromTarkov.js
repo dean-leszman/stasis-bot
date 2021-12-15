@@ -116,7 +116,7 @@ module.exports = {
         },
         'WOODS': {
             name: 'Woods',
-            url: 'https://i.imgur.com/QH6STpH.png'
+            url: 'https://i.imgur.com/9Tgv3Fw.jpeg'
         }
     }
 }
