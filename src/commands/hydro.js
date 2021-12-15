@@ -35,7 +35,10 @@ module.exports = {
                 }
 
                 await interaction.reply({
-                    content: message
+                    content: message,
+                    allowedMentions: {
+                        roles: [hydroRole.id]
+                    }
                 });
                 break;
             }
