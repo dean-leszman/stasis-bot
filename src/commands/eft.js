@@ -78,7 +78,7 @@ module.exports = {
                 interaction.reply({
                     content: `<https://escapefromtarkov.fandom.com/${query ? 'wiki/Special:Search?query=' + encodeURIComponent(query) : ''}>`
                 });
-                break;
+                return;
             }
             default: {
                 break;
