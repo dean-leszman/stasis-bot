@@ -10,6 +10,12 @@ for (const file of commandFiles) {
     commands.push(command.data.toJSON());
 }
 
+const contextFiles = fs.readdirSync('./src/context').filter(file => file.endsWith('.js'));
+for (const file of contextFiles) {
+    const command = require(`./context/${file}`);
+    commands.push(command.data.toJSON());
+}
+
 const rest = new REST({ version: '9' }).setToken(process.env.DISCORD_TOKEN);
 
 (async () => {
