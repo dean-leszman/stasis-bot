@@ -12,7 +12,7 @@ module.exports = {
     async execute(interaction) {
         const query = interaction.options.getString('query');
         await interaction.reply({
-            content: `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`
+            content: `<https://www.youtube.com/results?search_query=${encodeURIComponent(query)}>`
         });
     }
 };

@@ -9,7 +9,7 @@ module.exports = {
         const message = interaction.options.getMessage('message');
 
         await interaction.reply({
-            content: `https://www.youtube.com/results?search_query=${encodeURIComponent(message.content)}`
+            content: `<https://www.youtube.com/results?search_query=${encodeURIComponent(message.content)}>`
         });
     }
 }

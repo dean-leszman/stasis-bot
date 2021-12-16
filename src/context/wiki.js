@@ -9,7 +9,7 @@ module.exports = {
         const message = interaction.options.getMessage('message');
 
         await interaction.reply({
-            content: `https://en.wikipedia.org/w/index.php?search=${encodeURIComponent(message.content)}`
+            content: `<https://en.wikipedia.org/w/index.php?search=${encodeURIComponent(message.content)}>`
         });
     }
 }

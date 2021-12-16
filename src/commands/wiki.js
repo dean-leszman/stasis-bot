@@ -12,7 +12,7 @@ module.exports = {
     async execute(interaction) {
         const query = interaction.options.getString('query');
         await interaction.reply({
-            content: `https://en.wikipedia.org/w/index.php?search=${encodeURIComponent(query)}`
+            content: `<https://en.wikipedia.org/w/index.php?search=${encodeURIComponent(query)}>`
         });
     }
 };
