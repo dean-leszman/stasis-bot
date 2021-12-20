@@ -55,7 +55,7 @@ module.exports = {
         )
         .addSubcommand(subcommand => 
             subcommand.setName("status")
-            .setDescription("View Escape FroM Tarkov service status.")
+            .setDescription("View Escape From Tarkov service status.")
         )
         .addSubcommand(subcommand =>
             subcommand.setName('wiki')
@@ -66,35 +66,37 @@ module.exports = {
             )
         ),
     async execute(interaction) {
-        let content;
-        let embed;
-
         switch (interaction.options.getSubcommand()) {
             case 'ammo': {
                 embed = getAmmoInfo(interaction.options.getString('ammo_type'));
-                break;
+                await interaction.reply({
+                    embeds: [embed]
+                });
+                return;
             }
             case 'map': {
                 embed = getMapInfo(interaction.options.getString('map_name'));
-                break;
+                await interaction.reply({
+                    embeds: [embed]
+                });
+                return;
             }
             case 'status': {
-                content = `<https://status.escapefromtarkov.com/>`;
-                break;
+                await interaction.reply({
+                    content: `<https://status.escapefromtarkov.com/>`
+                });
+                return;
             }
             case 'wiki': {
                 const query = interaction.options.getString('query');
-                content = `<https://escapefromtarkov.fandom.com/${query ? 'wiki/Special:Search?query=' + encodeURIComponent(query) : ''}>`;
-                break;
+                await interaction.reply({
+                    content: `<https://escapefromtarkov.fandom.com/${query ? 'wiki/Special:Search?query=' + encodeURIComponent(query) : ''}>`
+                });
+                return;
             }
             default: {
                 break;
             }
         }
-
-        interaction.reply({
-            content: content,
-            embeds: [embed]
-        });
     }
 };
