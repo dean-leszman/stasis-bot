@@ -24,21 +24,6 @@ module.exports = {
         .setName('eft')
         .setDescription('Escape From Tarkov commands.')
         .addSubcommand(subcommand =>
-            subcommand.setName('map')
-            .setDescription('View map details.')
-            .addStringOption(option => {
-                option.setName('map_name')
-                .setDescription('The name of the map.')
-                .setRequired(true);
-        
-                for (const [key, value] of Object.entries(maps)) {
-                    option.addChoice(value.name, key);
-                }
-        
-                return option;
-            })
-        )
-        .addSubcommand(subcommand =>
             subcommand.setName('ammo')
             .setDescription('View ammo details.')
             .addStringOption(option => {
@@ -54,6 +39,25 @@ module.exports = {
             })
         )
         .addSubcommand(subcommand =>
+            subcommand.setName('map')
+            .setDescription('View map details.')
+            .addStringOption(option => {
+                option.setName('map_name')
+                .setDescription('The name of the map.')
+                .setRequired(true);
+        
+                for (const [key, value] of Object.entries(maps)) {
+                    option.addChoice(value.name, key);
+                }
+        
+                return option;
+            })
+        )
+        .addSubcommand(subcommand => 
+            subcommand.setName("status")
+            .setDescription("View Escape FroM Tarkov service status.")
+        )
+        .addSubcommand(subcommand =>
             subcommand.setName('wiki')
             .setDescription('Search via EFT wiki.')
             .addStringOption(option => 
@@ -62,6 +66,7 @@ module.exports = {
             )
         ),
     async execute(interaction) {
+        let content;
         let embed;
 
         switch (interaction.options.getSubcommand()) {
@@ -73,12 +78,14 @@ module.exports = {
                 embed = getMapInfo(interaction.options.getString('map_name'));
                 break;
             }
+            case 'status': {
+                content = `<https://status.escapefromtarkov.com/>`;
+                break;
+            }
             case 'wiki': {
                 const query = interaction.options.getString('query');
-                interaction.reply({
-                    content: `<https://escapefromtarkov.fandom.com/${query ? 'wiki/Special:Search?query=' + encodeURIComponent(query) : ''}>`
-                });
-                return;
+                content = `<https://escapefromtarkov.fandom.com/${query ? 'wiki/Special:Search?query=' + encodeURIComponent(query) : ''}>`;
+                break;
             }
             default: {
                 break;
@@ -86,6 +93,7 @@ module.exports = {
         }
 
         interaction.reply({
+            content: content,
             embeds: [embed]
         });
     }
