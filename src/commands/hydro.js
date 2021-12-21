@@ -44,14 +44,14 @@ module.exports = {
                 break;
             }
             case 'drink': {
-                const response = drink[Math.random() * drink.length];
+                const response = drink[Math.floor(Math.random() * drink.length)];
                 await interaction.reply({
                     content: response
                 });
                 break;
             }
             case 'thirsty': {
-                const response = thirsty[Math.random() * thirsty.length];
+                const response = thirsty[Math.floor(Math.random() * thirsty.length)];
                 await interaction.reply({
                     content: response
                 });
