@@ -1,4 +1,5 @@
 const { roleMention, SlashCommandBuilder } = require('@discordjs/builders');
+const { drink, thirsty } = require('../data/Hydro');
 
 const roleName = "Hydrohomie";
 module.exports = {
@@ -43,14 +44,16 @@ module.exports = {
                 break;
             }
             case 'drink': {
+                const response = drink[Math.random() * drink.length];
                 await interaction.reply({
-                    content: 'https://c.tenor.com/l2hbENFhHAoAAAAd/guy-in-black-shirt-thirsty.gif'
+                    content: response
                 });
                 break;
             }
             case 'thirsty': {
+                const response = thirsty[Math.random() * thirsty.length];
                 await interaction.reply({
-                    content: 'https://c.tenor.com/Nogfer0y4r8AAAAC/dying-hungry-and-thirstya.gif'
+                    content: response
                 });
                 break;
             }
