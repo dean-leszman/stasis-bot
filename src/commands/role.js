@@ -1,8 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const { roleMention, SlashCommandBuilder } = require('@discordjs/builders');
 
-const { trimString } = require('../util');
-
 const { COLORS: colorRoles, ICONS: iconRoles, GAMES: gameRoles } = require('../data/Roles');
 const { COLORS: colors } = require('../data/Static');
 
@@ -47,8 +45,17 @@ async function handleJoinRole(interaction) {
     const guildRole = interaction.guild.roles.cache.find(role => role.name.toUpperCase() === roleName.toUpperCase());
 
     if (!guildRole) {
-        interaction.editReply({
-            content: `The ${trimString(roleName)} role does not exist. Try \`/role list all\` to view available roles.`
+        await interaction.editReply({
+            content: `The ${roleName} role does not exist. Try \`/role list all\` to view available roles.`
+        });
+
+        return;
+    }
+
+    const canJoin = colorRoles.some(role => role.id === guildRole.id) || gameRoles.some(role => role.id === guildRole.id) || iconRoles.some(role => role.id === guildRole.id);
+    if (!canJoin) {
+        await interaction.editReply({
+            content: `You are not allowed to join the ${roleName} role.`
         });
 
         return;
@@ -56,7 +63,7 @@ async function handleJoinRole(interaction) {
 
     const memberHasRole = interaction.member.roles.cache.find(role => role.name === guildRole.name);
     if (memberHasRole) {
-        interaction.editReply({
+        await interaction.editReply({
             content: `You already have the ${guildRole.name} role!`
         });
 
@@ -64,7 +71,7 @@ async function handleJoinRole(interaction) {
     }
     
     await interaction.member.roles.add(guildRole.id)
-    interaction.editReply({
+    await interaction.editReply({
         content: `You have been added to the ${guildRole.name} role.`
     });
 }
