@@ -35,7 +35,6 @@ module.exports = {
     'VOICECHANNELS': [ // Names of voice channels that should not be deleted
         "🔇 A Quiet Place",
         "Channel Creator",
-        "Big Boi Lounge",
-        "Santa's Grotto"
+        "Big Boi Lounge"
     ]
 }
