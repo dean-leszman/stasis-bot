@@ -98,5 +98,6 @@ module.exports = {
                 break;
             }
         }
-    }
+    },
+    channels: ["escape-from-tarkov"]
 };

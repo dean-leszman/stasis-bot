@@ -41,9 +41,6 @@ module.exports = {
             subcommand.setName('textchannels')
             .setDescription('Create the text channels embed.')
         ),
-    permissions: {
-        commands: [Permissions.FLAGS.ADMINISTRATOR]
-    },
     async execute(interaction) {
         let embed;
         switch (interaction.options.getSubcommand()) {
@@ -68,5 +65,9 @@ module.exports = {
             content: 'Success!',
             ephemeral: true
         });
-    }
+    },
+    channels: ["server-info"],
+    permissions: {
+        command: [Permissions.FLAGS.ADMINISTRATOR]
+    },
 }

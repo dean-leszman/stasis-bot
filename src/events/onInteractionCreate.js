@@ -1,5 +1,27 @@
-function isAuthorised(memberPermissions, requiredPermissions) {
-    return memberPermissions.has(requiredPermissions);
+const { channelMention } = require('@discordjs/builders');
+const { BOTCOMMANDS: botCommandChannels, DEV: devChannels } = require('../data/Config');
+
+function canUseCommandInChannel(interaction, command) {
+    if (typeof command.channels === 'undefined' || !command.channels instanceof Array) return true; // not restricted
+
+    let channelName;
+    if (interaction.channel.isThread()) {
+        channelName = interaction.channel.parent.name
+    } else {
+        channelName = interaction.channel.name;
+    }
+
+    return devChannels.includes(channelName) || botCommandChannels.includes(channelName) || command.channels.includes(channelName);
+}
+
+function isValidInteraction(interaction) {
+    if (interaction.user.bot) {
+        return false; // do not allow bots
+    }
+
+    if (!(interaction.isCommand() || interaction.isButton() || interaction.isContextMenu())) {
+        return false; // unsupported interaction
+    }
 }
 
 function checkPermissions(interaction, command) {
@@ -10,7 +32,7 @@ function checkPermissions(interaction, command) {
         if (command.permissions.command !== 'undefined' && command.permissions.command instanceof Array) { // Are there permissions for the command itself?
             // Handle command permissions
             const requiredPermissions = command.permissions.command;
-            if (!isAuthorised(memberPermissions, requiredPermissions)) return false;
+            if (!memberPermissions.has(requiredPermissions)) return false;
         }
 
         const subcommand = interaction.options._subcommand !== null ? interaction.options.getSubcommand() : null;
@@ -18,7 +40,7 @@ function checkPermissions(interaction, command) {
             if (command.permissions.subcommands[subcommand] !== 'undefined' && command.permissions.subcommands[subcommand] instanceof Array) { // Are there permissions for this subcommand?
                 // Handle subcommand permissions
                 const requiredPermissions = command.permissions.subcommands[subcommand];
-                if (!isAuthorised(memberPermissions, requiredPermissions)) return false;
+                if (!memberPermissions.has(requiredPermissions)) return false;
             }
         }
     }
@@ -29,11 +51,10 @@ function checkPermissions(interaction, command) {
 module.exports = {
     name: 'interactionCreate',
     async execute(interaction) {
-        if (interaction.user.bot) return; // do not respond to bots
-        if (!interaction.isCommand() && !interaction.isButton() && !interaction.isContextMenu()) return; // is it a command or button?
+        if (isValidInteraction(interaction)) return;
 
         const command = interaction.client.commands.get(interaction.commandName);
-        if (!command) return; // exit if the command does not exist
+        if (!command) return; // the command does not exist
 
         try {
             const authorised = checkPermissions(interaction, command);
@@ -42,7 +63,21 @@ module.exports = {
                     content: `You are not authorised to use this command.`,
                     ephemeral: true
                 });
-                return false;
+                return;
+            }
+
+            const canUseInChannel = canUseCommandInChannel(interaction, command);
+            if (!canUseInChannel) {
+                const commandChannels = interaction.guild.channels.cache.filter(x => command.channels.includes(x.name)); // channels for this command
+                const globalChannels = interaction.guild.channels.cache.filter(x => botCommandChannels.includes(x.name)); // bot command channels
+                const allowedChannels = commandChannels.concat(globalChannels);
+                const channelMentions = allowedChannels.map(channel => channelMention(channel.id));
+
+                await interaction.reply({
+                    content: `You can not use that command in this channel. Please keep usage to the following channels:\n${channelMentions}.`,
+                    ephemeral: true
+                });
+                return;
             }
 
             await command.execute(interaction);

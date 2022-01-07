@@ -89,5 +89,6 @@ module.exports = {
                 break;
             }
         }
-    }
+    },
+    channels: ["path-of-exile"]
 };

@@ -173,5 +173,6 @@ module.exports = {
                 handleViewRoles(interaction);
             }
         }
-    }
+    },
+    channels: ["bot-commands"]
 }

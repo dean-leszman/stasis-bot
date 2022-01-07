@@ -45,5 +45,6 @@ module.exports = {
                 ephemeral: true
             });
         });
-    }
+    },
+    channels: ["bot-commands"]
 }

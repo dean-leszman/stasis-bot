@@ -9,5 +9,6 @@ module.exports = {
             content: 'Pong!',
             ephemeral: true
         });
-    }
+    },
+    channels: ["bot-commands"]
 };
