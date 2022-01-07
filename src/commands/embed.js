@@ -176,9 +176,6 @@ module.exports = {
             .setDescription('Embed string. Type \'help\' for embed flags.')
             .setRequired(true)
         ),
-    permissions: {
-        command: [Permissions.FLAGS.MANAGE_MESSAGES]
-    },
     async execute(interaction) {
         const text = interaction.options.getString('text');
 
@@ -196,5 +193,8 @@ module.exports = {
             content: `Embed created successfully:\n${text}`,
             ephemeral: true
         });
-    }
+    },
+    permissions: {
+        command: [Permissions.FLAGS.MANAGE_MESSAGES]
+    },
 }

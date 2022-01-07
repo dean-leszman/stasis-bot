@@ -20,5 +20,6 @@ module.exports = {
         interaction.reply({
             embeds: [embed]
         });
-    }
+    },
+    channels: ["bot-commands"]
 };
