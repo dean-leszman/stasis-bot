@@ -13,12 +13,20 @@ const client = new Client({
     }
 });
 
+client.buttons = new Collection();
 client.commands = new Collection();
+client.contexts = new Collection();
 
 const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.data.name, command);
+}
+
+const contextFiles = fs.readdirSync('./src/contexts').filter(file => file.endsWith('.js'));
+for (const file of contextFiles) {
+	const context = require(`./contexts/${file}`);
+	client.contexts.set(context.data.name, context);
 }
 
 const eventFiles = fs.readdirSync('./src/events').filter(file => file.endsWith('.js'));

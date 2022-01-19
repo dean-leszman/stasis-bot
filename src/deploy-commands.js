@@ -10,9 +10,9 @@ for (const file of commandFiles) {
     commands.push(command.data.toJSON());
 }
 
-const contextFiles = fs.readdirSync('./src/context').filter(file => file.endsWith('.js'));
+const contextFiles = fs.readdirSync('./src/contexts').filter(file => file.endsWith('.js'));
 for (const file of contextFiles) {
-    const command = require(`./context/${file}`);
+    const command = require(`./contexts/${file}`);
     commands.push(command.data.toJSON());
 }
 

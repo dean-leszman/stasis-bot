@@ -14,16 +14,6 @@ function canUseCommandInChannel(interaction, command) {
     return devChannels.includes(channelName) || botCommandChannels.includes(channelName) || command.channels.includes(channelName);
 }
 
-function isValidInteraction(interaction) {
-    if (interaction.user.bot) {
-        return false; // do not allow bots
-    }
-
-    if (!(interaction.isCommand() || interaction.isButton() || interaction.isContextMenu())) {
-        return false; // unsupported interaction
-    }
-}
-
 function checkPermissions(interaction, command) {
     // Check permissions
     if (typeof command.permissions !== 'undefined' && command.permissions instanceof Object) { // Does this command have permissions?
@@ -51,9 +41,20 @@ function checkPermissions(interaction, command) {
 module.exports = {
     name: 'interactionCreate',
     async execute(interaction) {
-        if (isValidInteraction(interaction)) return;
+        if (interaction.user.bot) {
+            return false; // do not allow bots
+        }
 
-        const command = interaction.client.commands.get(interaction.commandName);
+        let command;
+
+        if (interaction.isCommand()) {
+            command = interaction.client.commands.get(interaction.commandName);
+        } else if (interaction.isContextMenu()) {
+            command = interaction.client.contexts.get(interaction.commandName);
+        } else if (interaction.isButton()) {
+            command = interaction.client.buttons.get(interaction.commandName);
+        }
+
         if (!command) return; // the command does not exist
 
         try {
@@ -80,6 +81,7 @@ module.exports = {
                 return;
             }
 
+            console.log(`${interaction.member.displayName} (${interaction.member.user.tag}) used '${interaction.commandName}'`);
             await command.execute(interaction);
         } catch (error) {
             console.error(error);
