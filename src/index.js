@@ -5,6 +5,7 @@ const { Client, Collection, Intents } = require('discord.js');
 
 const client = new Client({ 
     intents: [
+        Intents.FLAGS.GUILD_MEMBERS,
         Intents.FLAGS.GUILDS,
         Intents.FLAGS.GUILD_VOICE_STATES
     ],
