@@ -27,13 +27,7 @@ module.exports = {
         name: "**Immigration Control**",
         value: "All traffic through the border must present a valid citizen identity card or visa permit."
     }],
-    TEXTCHANNELS: [
-        "628924169630777363", // Destiny
-        "808380003951575060", // Eco
-        "791662222082310175", // Escape From Tarkov
-        "447047848652177408", // Final Fantasy
-        "619493278164975618", // Path of Exile
-    ],
+    TEXTCHANNELS: "628924587702222868", // Games category
     VOICECHANNELS: [ // Names of voice channels that should not be deleted
         "🔇 A Quiet Place",
         "Channel Creator",

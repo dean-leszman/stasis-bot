@@ -16,11 +16,14 @@ function getRulesEmbed() {
         .setColor(colors.teal);
 }
 
-function getTextChannelsEmbed() {
+function getTextChannelsEmbed(interaction) {
+    const category = interaction.guild.channels.cache.find(channel => channel.id === textChannels);
+
     let description = 'The channels listed below are restricted to those with the matching role.\nTo view the channel, you must obtain the matching role via \`/role`.\n\n';
 
-    textChannels.forEach(channel => {
-        description += `${channelMention(channel)}\n`;
+    const channels = category.children.sort((a, b) => a.name.localeCompare(b.name));
+    channels.forEach(channel => {
+        description += `${channelMention(channel.id)}\n`;
     });
 
     return embed = new MessageEmbed()
@@ -49,7 +52,7 @@ module.exports = {
                 break;
             }
             case 'textchannels': {
-                embed = getTextChannelsEmbed();
+                embed = getTextChannelsEmbed(interaction);
                 break;
             }
             default: {
