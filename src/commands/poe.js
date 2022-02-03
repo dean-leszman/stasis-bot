@@ -35,7 +35,7 @@ module.exports = {
         .setDescription('Path of Exile commands.')
         .addSubcommand(subcommand =>
             subcommand.setName('atlas')
-            .setDescription('View all map tiers for the Atlas')
+            .setDescription('View all map tiers for the Atlas.')
         )
         .addSubcommand(subcommand => 
             subcommand.setName('league')
@@ -54,7 +54,7 @@ module.exports = {
         )
         .addSubcommand(subcommand => 
             subcommand.setName('links')
-            .setDescription('View useful Path of Exile links')
+            .setDescription('View useful Path of Exile links.')
         )
         .addSubcommand(subcommand =>
             subcommand.setName('wiki')
