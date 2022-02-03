@@ -1,10 +1,30 @@
+const { MessageEmbed } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { LEAGUES: leagues } = require('../data/PathOfExile');
+const { atlas, leagues } = require('../data/PathOfExile');
+const { colors } = require('../data/Static');
+
+function getMapTiersEmbed() {
+    const embed = new MessageEmbed().setTitle("3.17 Atlas Tiers").setColor(colors.orange);
+    atlas.map((tier, i) => {
+        let tierMaps = "";
+        tier.forEach(map => {
+            tierMaps += `${map}\n`
+        });
+        embed.addField(`__Tier ${i + 1}__`, tierMaps);
+    });
+
+    return embed;
+}
+
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('poe')
         .setDescription('Path of Exile commands.')
+        .addSubcommand(subcommand =>
+            subcommand.setName('atlas')
+            .setDescription('View all map tiers for the Atlas')
+        )
         .addSubcommand(subcommand => 
             subcommand.setName('chromatics')
             .setDescription('Open Chromatic Orb calculator.')
@@ -46,6 +66,12 @@ module.exports = {
         ),
     async execute(interaction) {
         switch (interaction.options.getSubcommand()) {
+            case 'atlas': {
+                interaction.reply({
+                    embeds: [getMapTiersEmbed()]
+                });
+                break;
+            }
             case 'chromatics': {
                 interaction.reply({
                     content: '<https://siveran.github.io/calc.html>'

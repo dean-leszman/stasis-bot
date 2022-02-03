@@ -2,7 +2,7 @@ const { MessageEmbed } = require('discord.js');
 const { roleMention, SlashCommandBuilder } = require('@discordjs/builders');
 
 const { COLORS: colorRoles, ICONS: iconRoles, GAMES: gameRoles } = require('../data/Roles');
-const { COLORS: colors } = require('../data/Static');
+const { colors } = require('../data/Static');
 
 function getRoleEmbed(type) {
     const embed = new MessageEmbed()

@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { COLORS: colors } = require('../data/Static');
+const { colors } = require('../data/Static');
 const { getBoostTier } = require('../util');
 
 function showServerInfo(interaction) {

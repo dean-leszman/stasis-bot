@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const { SERVER: config } = require('../data/Config');
-const { COLORS: colors } = require('../data/Static');
+const { colors } = require('../data/Static');
 
 module.exports = {
     name: 'guildMemberUpdate',

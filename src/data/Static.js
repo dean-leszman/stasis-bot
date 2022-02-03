@@ -1,5 +1,5 @@
 module.exports = {
-    'COLORS': {
+    colors: {
         teal: 0x1ABC9C,
         teal_dark: 0x11806A,
         green: 0x2ECC71,

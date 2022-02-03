@@ -1,7 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { RAIDS: raids } = require('../data/Destiny');
-const { COLORS: colors } = require('../data/Static');
+const { colors } = require('../data/Static');
 
 function getRaidInfo(raidName) {
     return new MessageEmbed()

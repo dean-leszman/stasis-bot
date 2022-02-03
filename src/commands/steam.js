@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { COLORS: colors } = require('../data/Static');
+const { colors } = require('../data/Static');
 const { IPlayerService, ISteamUser } = require('../data/Steam');
 const { STEAM_API_KEY } = process.env;
 const fetch = require('node-fetch');

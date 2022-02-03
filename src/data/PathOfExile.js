@@ -1,5 +1,23 @@
 module.exports = {
-    'LEAGUES': {
+    atlas: [
+        ["Mesa", "Palace", "Underground Sea", "Vault"],
+        ["Arachnid Nest", "Basilica", "Cold River", "Flooded Mine", "Forking River", "Museum", "Shrine", "Waste Pool"],
+        ["Beach", "Colosseum", "Estuary", "Lava Chamber", "Mineral Pools", "Moon Temple", "Necropolis", "Toxic Sewer"],
+        ["Cemetery", "Conservatory", "Ghetto", "Mausoleum", "Overgrown Shrine", "Temple", "Thicket", "Tower"],
+        ["Bazaar", "Cage", "Cells", "Courtyard", "Coves", "Overgrown Ruin", "Promenade", "Shore"],
+        ["Arid Lake", "Atoll", "Channel", "City Square", "Crimson Township", "Dark Forest", "Jungle Valley"],
+        ["Arcade", "Bone Crypt", "Canyon", "Infested Valley", "Laboratory", "Malformation", "Silo"],
+        ["Arsenal", "Belfry", "Bramble Valley", "Defiled Cathedral", "Grotto", "Phantasmagoria", "Shipyard"],
+        ["Ancient City", "Armoury", "Fields", "Marshes", "Precinct", "Volcano"],
+        ["Acid Caverns", "Dunes", "Forbidden Woods", "Glacier", "Grave Trough", "Orchard"],
+        ["Caldera", "Desert Spring", "Graveyard", "Iceberg", "Lair", "Spider Forest"],
+        ["Dig", "Peninsula", "Stagnation", "Underground River", "Vaal Pyramid", "Wasteland"],
+        ["Carcass", "Frozen Cabins", "Gardens", "Lookout", "Plaza"],
+        ["Burial Chambers", "Haunted Mansion", "Maze", "Primordial Pool", "Strand"],
+        ["Coral Ruins", "Cursed Crypt", "Dry Sea", "Ivory Temple", "Summit"],
+        ["Ashen Wood", "Crimson Temple", "Dungeon", "Port", "Vaal Temple"]
+    ],
+    leagues: {
         'BETRAYAL': {
             name: 'Betrayal',
             url: 'https://www.wraeclast.com/wp-content/uploads/2021/07/syndicate_315_b.jpg'
