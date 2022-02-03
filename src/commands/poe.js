@@ -1,7 +1,19 @@
 const { MessageEmbed } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { atlas, leagues } = require('../data/PathOfExile');
+const { atlas, leagues, links } = require('../data/PathOfExile');
 const { colors } = require('../data/Static');
+
+function getLinksEmbed() {
+    const embed = new MessageEmbed().setTitle("Path of Exile Links").setColor(colors.orange);
+    let description = "";
+
+    links.forEach(link => {
+        description += `**${link.name}**\n<${link.url}>\n\n`;
+    });
+
+    embed.setDescription(description);
+    return embed;
+}
 
 function getMapTiersEmbed() {
     const embed = new MessageEmbed().setTitle("3.17 Atlas Tiers").setColor(colors.orange);
@@ -26,18 +38,6 @@ module.exports = {
             .setDescription('View all map tiers for the Atlas')
         )
         .addSubcommand(subcommand => 
-            subcommand.setName('chromatics')
-            .setDescription('Open Chromatic Orb calculator.')
-        )
-        .addSubcommand(subcommand => 
-            subcommand.setName('filter')
-            .setDescription('Open filterblade.xyz.')
-        )
-        .addSubcommand(subcommand => 
-            subcommand.setName('guild')
-            .setDescription('Open Stasis guild page.')
-        )
-        .addSubcommand(subcommand => 
             subcommand.setName('league')
             .setDescription('League-specific cheatsheets.')
             .addStringOption(option => {
@@ -53,8 +53,8 @@ module.exports = {
             })
         )
         .addSubcommand(subcommand => 
-            subcommand.setName('trade')
-            .setDescription('Open Path of Exile trade site.')
+            subcommand.setName('links')
+            .setDescription('View useful Path of Exile links')
         )
         .addSubcommand(subcommand =>
             subcommand.setName('wiki')
@@ -72,35 +72,16 @@ module.exports = {
                 });
                 break;
             }
-            case 'chromatics': {
-                interaction.reply({
-                    content: '<https://siveran.github.io/calc.html>'
-                });
-                break;
-            }
-            case 'filter': {
-                interaction.reply({
-                    content: '<https://www.filterblade.xyz>'
-                });
-                break;
-            }
-            case 'guild': {
-                interaction.reply({
-                    content: '<https://www.pathofexile.com/guild/profile/807017>'
-                });
-                break;
-            }
             case 'league': {
                 const leagueName = interaction.options.getString('league_name');
-
                 interaction.reply({
                     content: leagues[leagueName].url
                 });
                 break;
             }
-            case 'trade': {
+            case 'links': {
                 interaction.reply({
-                    content: '<https://www.pathofexile.com/trade>'
+                    embeds: [getLinksEmbed()]
                 });
                 break;
             }

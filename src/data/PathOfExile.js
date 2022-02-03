@@ -46,5 +46,24 @@ module.exports = {
             name: 'Legion',
             url: 'https://wraeclast.com/wp-content/uploads/2019/06/cheatsheet_legion.png'
         }
-    }
+    },
+    links: [{
+        name: "FilterBlade",
+        url: "https://www.filterblade.xyz/"
+    }, {
+        name: "Path of Building Community",
+        url: "https://pathofbuilding.community/"
+    }, {
+        name: "Path of Exile Guild",
+        url: "https://www.pathofexile.com/guild/profile/807017"
+    }, {
+        name: "Path of Exile Trading",
+        url: "https://www.pathofexile.com/trade"
+    }, {
+        name: "Path of Exile Wiki",
+        url: "https://www.poewiki.net/w/index.php"
+    }, {
+        name: "Vorici Chromatic Calculator",
+        url: "https://siveran.github.io/calc.html"
+    }]
 }
