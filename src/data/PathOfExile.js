@@ -60,8 +60,17 @@ module.exports = {
         name: "Path of Exile Trading",
         url: "https://www.pathofexile.com/trade"
     }, {
-        name: "Path of Exile Wiki",
+        name: "PoE Wiki",
         url: "https://www.poewiki.net/w/index.php"
+    }, {
+        name: "PoE DB",
+        url: "https://poedb.tw/us/"
+    }, {
+        name: "PoE Lab",
+        url: "https://www.poelab.com/"
+    }, {
+        name: "PoE Ninja",
+        url: "https://poe.ninja/"
     }, {
         name: "Vorici Chromatic Calculator",
         url: "https://siveran.github.io/calc.html"
