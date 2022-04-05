@@ -75,6 +75,8 @@ module.exports = {
         { id: '565530005296119820', name: 'Star Wars Battlefront' }, 
         { id: '438381805192740875', name: 'Tabletop Simulator' }, 
         { id: '534301877928460308', name: 'Team Fortress 2' }, 
+        { id: '960980687303901274', name: 'Terraria' },
+        { id: '960980871224123472', name: 'Vermintide' },
         { id: '830482970506035210', name: 'VR' }, 
         { id: '628319622839533570', name: 'Warthunder' }, 
         { id: '534302638431535105', name: 'World of Warcraft' }
