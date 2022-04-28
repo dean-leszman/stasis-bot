@@ -106,6 +106,20 @@ async function handleLeaveRole(interaction) {
     });
 }
 
+function handleViewHelp(interaction) {
+    const embed = new MessageEmbed()
+        .setTitle('Role Help')
+        .addField('View role help - `/role help`', 'You know how to do this already. Good job!')
+        .addField('View available roles - `/role list <all|colors|icons|games>`', 'e.g. `/role list games`')
+        .addField('Join a role - `/role join <Role Name>`', 'e.g. `/role join Escape From Tarkov`')
+        .addField('Leave a role - `/role leave <Role Name>`', 'e.g. `/role leave Path of Exile`')
+        .setColor(colors.teal);
+
+    interaction.reply({
+        embeds: [embed]
+    });
+}
+
 function handleViewRoles(interaction) {
     const type = interaction.options.getString('type');
 
@@ -127,6 +141,10 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('role')
         .setDescription('Manage your roles.')
+        .addSubcommand(subcommand =>
+            subcommand.setName('help')
+            .setDescription('Help! I don\'t know what to do!')
+        )
         .addSubcommand(subcommand =>
             subcommand.setName('join')
             .setDescription('Join a role.')
@@ -160,6 +178,10 @@ module.exports = {
         ),
     async execute(interaction) {
         switch (interaction.options.getSubcommand()) {
+            case 'help': {
+                handleViewHelp(interaction);
+                break;
+            }
             case 'join': {
                 handleJoinRole(interaction);
                 break;
