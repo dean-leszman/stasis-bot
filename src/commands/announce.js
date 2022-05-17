@@ -27,11 +27,11 @@ module.exports = {
         const embed = new MessageEmbed()
             .setTitle(title)
             .setDescription(message)
-            .setAuthor("Council of Ministers", interaction.guild.iconURL())
+            .setAuthor({
+                name: interaction.options.getString('author') ?? "Council of Ministers", 
+                iconURL: interaction.guild.iconURL()
+            })
             .setColor(colors.teal);
-
-        const author = interaction.options.getString('author') ?? "Council of Ministers";
-        embed.setAuthor(author, interaction.guild.iconURL());
 
         interaction.reply({
             embeds: [embed]

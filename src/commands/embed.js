@@ -156,12 +156,20 @@ function parseEmbedString(interaction, data) {
     const authorIcon = data.match(/(?<=--authoricon=")([^"]+)(?=")/ig);
     const authorUrl = data.match(/(?<=--authorurl=")([^"]+)(?=")/ig);
     if (author && author.length === 1) {
-        embed.setAuthor(interaction.member.displayName, interaction.member.displayAvatarURL());
+        embed.setAuthor({
+            name: interaction.member.displayName, 
+            iconUrl: interaction.member.displayAvatarURL()
+        });
     } else if (authorName && authorName.length === 1) {
         const name = author[0];
-        const iconUrl = authorIcon && authorIcon.length === 1 ? authorIcon[0] : null;
+        const iconURL = authorIcon && authorIcon.length === 1 ? authorIcon[0] : null;
         const url = authorUrl && authorUrl.length === 1 ? authorUrl[0] : null;
-        this.embed.setAuthor(name, iconUrl, url);
+
+        this.embed.setAuthor({
+            name: name, 
+            iconURL: iconURL, 
+            url: url
+        });
     }
 
     return embed;
