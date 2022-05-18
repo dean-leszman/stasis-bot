@@ -13,3 +13,4 @@ old/
 .vscode
 src/commands/test.js
 *.sqlite
+assets/
