@@ -12,7 +12,9 @@ module.exports = {
             .addField('**Channel**', `${channel.name}\n${channel.id}`, true)
             .addField('**Type**', `${channel.type}`, true)
             .setColor(colors.red)
-            .setFooter(`Deleted on ${new Date().toLocaleString('en-GB')}`);
+            .setFooter({
+                text: `Deleted on ${new Date().toLocaleString('en-GB')}`
+            });
 
         if (channel.parent) {
             embed.addField('**Parent**', `${channel.parent.name}\n${channel.parent.id}`, true);

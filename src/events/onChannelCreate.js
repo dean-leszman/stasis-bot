@@ -14,7 +14,9 @@ module.exports = {
             .addField('**Parent**', `${channel.parent ? channel.parent.name : 'None'}\n${channel.parent ? channel.parent.id : 'None'}`, true)
             .addField('**Type**', `${channel.type}`, true)
             .setColor(colors.green)
-            .setFooter(`Created on ${new Date().toLocaleString('en-GB')}`);
+            .setFooter({
+                text: `Created on ${new Date().toLocaleString('en-GB')}`
+            });
 
         logChannel.send({
             embeds: [embed]

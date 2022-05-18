@@ -129,7 +129,10 @@ function parseEmbedString(interaction, data) {
     if (footer && footer.length === 1) {
         const footerText = footer[0];
         const footerIconUrl = footerIcon && footerIcon.length ? footerIcon[0] : null;
-        embed.setFooter(footerText, footerIconUrl)
+        embed.setFooter({
+            text: footerText, 
+            iconURL: footerIconUrl
+        });
     }
 
     // Color
