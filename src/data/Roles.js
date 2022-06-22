@@ -1,10 +1,10 @@
 module.exports = {
-    'JOIN': [ 
+    joinRoles: [ 
         '768059886641741855', 
         '484276740961730560'
     ],
 
-    'COLORS': [
+    colorRoles: [
         { id: '565560257124761610', name: 'Blue' }, 
         { id: '816365142727065680', name: 'Blush Pink' }, 
         { id: '565560208898916357', name: 'Cornflower Blue' },
@@ -24,7 +24,7 @@ module.exports = {
         { id: '565559644085551124', name: 'Yellow' },
         { id: '902571101299830794', name: 'White' }
     ],
-    'ICONS': [
+    iconRoles: [
         { id: '894863416261500970', name: 'Blue Gem' }, 
         { id: '894598572316717116', name: 'Gun' }, 
         { id: '920328578133008445', name: 'Hydrohomie' },
@@ -36,7 +36,7 @@ module.exports = {
         { id: '893489742908370954', name: 'Teal Gem' }, 
         { id: '893490204491546654', name: 'Yellow Gem' }
     ],
-    'GAMES': [
+    gameRoles: [
         { id: '760140333883064331', name: 'Among Us' }, 
         { id: '683445917138944083', name: 'ARK' }, 
         { id: '438397718000304128', name: 'ARMA 3' }, 

@@ -1,14 +1,14 @@
 module.exports = {
-    SERVER: {
+    server: {
         logChannel: '552985239174250517'
     },
-    BOTCOMMANDS: ["bot-commands"],
-    DEV: ["bot-magic"],
-    CHANNEL: { // 
+    botCommandChannels: ["bot-commands"],
+    devChannels: ["bot-magic"],
+    channel: { // 
         categoryName: 'Voice',
         deleteTimeout: 15 // delete channel after n seconds if it is empty
     },
-    RULES: [{
+    rules: [{
         name: "**Use Common Sense**",
         value: "The server staff aren't here to babysit you. Keep it sensible."
     }, {
@@ -27,10 +27,11 @@ module.exports = {
         name: "**Immigration Control**",
         value: "All traffic through the border must present a valid citizen identity card or visa permit."
     }],
-    TEXTCHANNELS: "628924587702222868", // Games category
-    VOICECHANNELS: [ // Names of voice channels that should not be deleted
+    textChannels: "628924587702222868", // Games category
+    voiceChannels: [ // Names of voice channels that should not be deleted
         "🔇 A Quiet Place",
         "Channel Creator",
         "Big Boi Lounge"
-    ]
+    ],
+    voiceChannelCreator: "Channel Creator" // Name of voice channel that a member should join to automatically create their own channel
 }

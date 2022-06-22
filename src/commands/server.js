@@ -1,6 +1,6 @@
 const { MessageEmbed, Permissions } = require('discord.js');
 const { channelMention, SlashCommandBuilder } = require('@discordjs/builders');
-const { RULES: rules, TEXTCHANNELS: textChannels } = require('../data/Config');
+const { rules, textChannels } = require('../data/Config');
 const { colors } = require('../data/Static');
 
 function getRulesEmbed() {

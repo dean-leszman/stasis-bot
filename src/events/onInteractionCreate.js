@@ -1,5 +1,5 @@
 const { channelMention } = require('@discordjs/builders');
-const { BOTCOMMANDS: botCommandChannels, DEV: devChannels } = require('../data/Config');
+const { botCommandChannels, devChannels } = require('../data/Config');
 
 function canUseCommandInChannel(interaction, command) {
     if (typeof command.channels === 'undefined' || !command.channels instanceof Array) return true; // not restricted

@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const { SERVER: config } = require('../data/Config');
+const { server: config } = require('../data/Config');
 const { colors } = require('../data/Static');
 
 module.exports = {

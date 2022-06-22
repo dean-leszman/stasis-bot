@@ -1,4 +1,4 @@
-const { JOIN: joinRoles } = require('../data/Roles');
+const { joinRoles } = require('../data/Roles');
 
 module.exports = {
     name: 'guildMemberAdd',

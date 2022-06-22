@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { CHANNEL: config } = require('../data/Config');
+const { channel: config } = require('../data/Config');
 const { Permissions } = require('discord.js');
 const { ChannelType } = require('discord-api-types/v9');
 
@@ -29,9 +29,11 @@ module.exports = {
             }]
         })
         .then(async channel => {
-            setTimeout(() => { // delete channel if nobody joins it within after 15 seconds.
-                if (!channel.deleted && !channel.members.first()) {
+            interaction.client.channelCache.add(channel);
+            setTimeout(async () => { // delete channel if nobody is in it after a duration
+                if (interaction.client.channelCache.has(channel) && !channel.members.first()) {
                     channel.delete();
+                    interaction.client.channelCache.delete(channel);
 
                     interaction.editReply({
                         content: 'Your channel was deleted for inactivity.',
