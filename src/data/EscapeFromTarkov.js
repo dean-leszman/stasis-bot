@@ -26,7 +26,7 @@ module.exports = {
         },
         '.45': {
             name: '.45',
-            description: 'Budget Ammo: *.45 ACP*\nBest Ammo: *.45 ACP AP*\nBest Weapon: *TDI KRISS Vector Gen.2 .45 ACP submachinegun*\n[View all .45 ACP ammo](https://i.imgur.com/q5YjtcU.png)'
+            description: 'Budget Ammo: *.45 ACP*\nBest Ammo: *.45 ACP AP*\nBest Weapon: *TDI KRISS Vector Gen.2 .45 ACP submachinegun*\n[View all .45 ammo](https://i.imgur.com/q5YjtcU.png)'
         },
         '4.6X30MM': {
             name: '4.6x30mm',
@@ -58,7 +58,7 @@ module.exports = {
         },
         '7.62X54R': {
             name: '7.62x54R',
-            description: 'Budget Ammo: *7.62x54R LPS Gzh*\nBest Ammo: *7.62x54R BS*\nBest Weapon: *SVDS 7.62x54 Sniper rifle*\n[View all 7.62x54R ammo](https://i.imgur.com/c0N7VD9.png)'
+            description: 'Budget Ammo: *7.62x54R LPS Gzh*\nBest Ammo: *7.62x54R BS*\nBest Weapon: *SVDS 7.62x54 Sniper rifle*\n[View all 7.62x54R ammo](https://i.imgur.com/9S7uQsI.png)'
         },
         '9X18MM': {
             name: '9x18mm',
