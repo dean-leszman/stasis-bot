@@ -63,6 +63,7 @@ module.exports = {
         { id: '534302479689449476', name: 'Overwatch' }, 
         { id: '534302676360626186', name: 'Path of Exile' }, 
         { id: '769949606048956456', name: 'Phasmophobia' }, 
+        { id: '993427004621864970', name: 'Planetside' },
         { id: '923874110222790676', name: 'Project Zomboid' },
         { id: '438381742936817675', name: 'Rainbow Six: Siege' }, 
         { id: '607309197725532176', name: 'Risk of Rain' }, 
