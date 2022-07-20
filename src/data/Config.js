@@ -29,7 +29,6 @@ module.exports = {
     }],
     textChannels: "628924587702222868", // Games category
     voiceChannels: [ // Names of voice channels that should not be deleted
-        "🔇 A Quiet Place",
         "Channel Creator",
         "Big Boi Lounge"
     ],
