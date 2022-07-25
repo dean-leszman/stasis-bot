@@ -4,6 +4,20 @@ const { roleMention, SlashCommandBuilder } = require('@discordjs/builders');
 const { colorRoles, iconRoles, gameRoles } = require('../data/Roles');
 const { colors } = require('../data/Static');
 
+function isProtectedRole(role, roles) {
+    // Admin role
+    if (role.id === roles.highest.id) {
+        return true;
+    }
+
+    // Nitro role
+    if (role.id === roles.premiumSubscriberRole.id) {
+        return true;
+    }
+
+    return false;
+}
+
 function getRoleEmbed(type) {
     const embed = new MessageEmbed()
         .setColor(colors.teal);
@@ -41,38 +55,38 @@ async function handleJoinRole(interaction) {
     // Add role to user
     await interaction.deferReply();
 
-    const roleName = interaction.options.getString('role_name');
-    const guildRole = interaction.guild.roles.cache.find(role => role.name.toUpperCase() === roleName.toUpperCase());
+    const role = interaction.options.getRole('role');
 
-    if (!guildRole) {
-        await interaction.editReply({
-            content: `The ${roleName} role does not exist. Try \`/role list all\` to view available roles.`
+    const protectedRole = isProtectedRole(role, interaction.guild.roles);
+    if (protectedRole) {
+        interaction.editReply({
+            content: `You cannot join the ${role.name} role!`
         });
 
         return;
     }
 
-    const canJoin = colorRoles.some(role => role.id === guildRole.id) || gameRoles.some(role => role.id === guildRole.id) || iconRoles.some(role => role.id === guildRole.id);
+    const canJoin = colorRoles.some(x => x === role.name) || gameRoles.some(x => x === role.name) || iconRoles.some(x => x === role.name);
     if (!canJoin) {
         await interaction.editReply({
-            content: `You are not allowed to join the ${roleName} role.`
+            content: `You are not allowed to join the ${role.name} role.`
         });
 
         return;
     }
 
-    const memberHasRole = interaction.member.roles.cache.find(role => role.name === guildRole.name);
+    const memberHasRole = interaction.member.roles.cache.find(x => x.name === role.name);
     if (memberHasRole) {
         await interaction.editReply({
-            content: `You already have the ${guildRole.name} role!`
+            content: `You already have the ${role.name} role!`
         });
 
         return;
     }
     
-    await interaction.member.roles.add(guildRole.id)
+    await interaction.member.roles.add(role.id)
     await interaction.editReply({
-        content: `You have been added to the ${guildRole.name} role.`
+        content: `You have been added to the ${role.name} role.`
     });
 }
 
@@ -80,29 +94,29 @@ async function handleLeaveRole(interaction) {
     // Remove role from user
     await interaction.deferReply();
 
-    const roleName = interaction.options.getString('role_name');
-    const guildRole = interaction.guild.roles.cache.find(role => role.name.toUpperCase() === roleName.toUpperCase());
+    const role = interaction.options.getRole('role');
 
-    if (!guildRole) {
+    const protectedRole = isProtectedRole(role, interaction.guild.roles);
+    if (protectedRole) {
         interaction.editReply({
-            content: `The ${trimString(roleName)} role does not exist. Try \`/role list all\` to view available roles.`
+            content: `You cannot leave the ${role.name} role!`
         });
 
         return;
     }
 
-    const memberHasRole = interaction.member.roles.cache.find(role => role.name === guildRole.name);
+    const memberHasRole = interaction.member.roles.cache.find(x => x.id === role.id);
     if (!memberHasRole) {
         interaction.editReply({
-            content: `You don\'t have the ${guildRole.name} role!`
+            content: `You don\'t have the ${role.name} role!`
         });
 
         return;
     }
     
-    await interaction.member.roles.remove(guildRole.id)
+    await interaction.member.roles.remove(role.id)
     interaction.editReply({
-        content: `You have been removed from the ${guildRole.name} role.`
+        content: `You have been removed from the ${role.name} role.`
     });
 }
 
@@ -148,18 +162,18 @@ module.exports = {
         .addSubcommand(subcommand =>
             subcommand.setName('join')
             .setDescription('Join a role.')
-            .addStringOption(option =>
-                option.setName('role_name')
-                .setDescription('Role name.')
+            .addRoleOption(option => 
+                option.setName('role')
+                .setDescription('The role you want to join')
                 .setRequired(true)
             )
         )
         .addSubcommand(subcommand =>
             subcommand.setName('leave')
             .setDescription('Leave a role.')
-            .addStringOption(option =>
-                option.setName('role_name')
-                .setDescription('Role name')
+            .addRoleOption(option => 
+                option.setName('role')
+                .setDescription('The role you want to leave')
                 .setRequired(true)
             )
         )
