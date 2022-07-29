@@ -1,10 +1,9 @@
-const { MessageEmbed } = require('discord.js');
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 const { atlas, leagues, links } = require('../data/PathOfExile');
 const { colors } = require('../data/Static');
 
 function getLinksEmbed() {
-    const embed = new MessageEmbed().setTitle("Path of Exile Links").setColor(colors.orange);
+    const embed = new EmbedBuilder().setTitle("Path of Exile Links").setColor(colors.orange);
     let description = "";
 
     links.forEach(link => {
@@ -16,13 +15,13 @@ function getLinksEmbed() {
 }
 
 function getMapTiersEmbed() {
-    const embed = new MessageEmbed().setTitle("3.17 Atlas Tiers").setColor(colors.orange);
+    const embed = new EmbedBuilder().setTitle("3.17 Atlas Tiers").setColor(colors.orange);
     atlas.map((tier, i) => {
         let tierMaps = "";
         tier.forEach(map => {
             tierMaps += `${map}\n`
         });
-        embed.addField(`__Tier ${i + 1}__`, tierMaps);
+        embed.addFields({ name: `__Tier ${i + 1}__`, value: tierMaps });
     });
 
     return embed;
@@ -46,7 +45,7 @@ module.exports = {
                 .setRequired(true);
 
                 for (const [key, value] of Object.entries(leagues)) {
-                    option.addChoice(value.name, key);
+                    option.addChoices({ name: value.name, value: key });
                 }
 
                 return option;

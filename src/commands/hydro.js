@@ -1,4 +1,5 @@
-const { roleMention, SlashCommandBuilder } = require('@discordjs/builders');
+const { SlashCommandBuilder } = require('discord.js');
+const { roleMention } = require('@discordjs/builders');
 const { drink, thirsty } = require('../data/Hydro');
 
 const roleName = "Hydrohomie";
@@ -62,4 +63,4 @@ module.exports = {
             }
         }
     }
-};
+}

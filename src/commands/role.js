@@ -1,8 +1,15 @@
-const { MessageEmbed } = require('discord.js');
-const { roleMention, SlashCommandBuilder } = require('@discordjs/builders');
+const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
+const { roleMention } = require('@discordjs/builders');
 
 const { colorRoles, iconRoles, gameRoles } = require('../data/Roles');
 const { colors } = require('../data/Static');
+
+const roleTypes = {
+    all: 'all',
+    colors: 'colors',
+    games: 'games',
+    icons: 'icons'
+}
 
 function isProtectedRole(role, roles) {
     // Admin role
@@ -19,22 +26,22 @@ function isProtectedRole(role, roles) {
 }
 
 function getRoleEmbed(type) {
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
         .setColor(colors.teal);
     
     let roles;
     switch (type) {
-        case 'COLORS': {
+        case roleTypes.colors: {
             embed.setTitle('**Color Roles**');
             roles = colorRoles;
             break;
         }
-        case 'GAMES': {
+        case roleTypes.games: {
             embed.setTitle('**Game Roles**');
             roles = gameRoles;
             break;
         }
-        case 'ICONS': {
+        case roleTypes.icons: {
             embed.setTitle('**Icon Roles**');
             roles = iconRoles;
             break;
@@ -121,12 +128,21 @@ async function handleLeaveRole(interaction) {
 }
 
 function handleViewHelp(interaction) {
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
         .setTitle('Role Help')
-        .addField('View role help - `/role help`', 'You know how to do this already. Good job!')
-        .addField('View available roles - `/role list <all|colors|icons|games>`', 'e.g. `/role list games`')
-        .addField('Join a role - `/role join <Role Name>`', 'e.g. `/role join Escape From Tarkov`')
-        .addField('Leave a role - `/role leave <Role Name>`', 'e.g. `/role leave Path of Exile`')
+        .addFields({ 
+            name: 'View role help - `/role help`', 
+            value: 'You know how to do this already. Good job!' 
+        }, { 
+            name: 'View available roles - `/role list <all|colors|icons|games>`', 
+            value: 'e.g. `/role list games`' 
+        }, {
+            name: 'Join a role - `/role join <Role Name>`', 
+            value: 'e.g. `/role join Escape From Tarkov`'
+        }, { 
+            name: 'Leave a role - `/role leave <Role Name>`', 
+            value: 'e.g. `/role leave Path of Exile`'
+        })
         .setColor(colors.teal);
 
     interaction.reply({
@@ -138,10 +154,10 @@ function handleViewRoles(interaction) {
     const type = interaction.options.getString('type');
 
     let embeds = [];
-    if (type === 'ALL') {
-        embeds.push(getRoleEmbed('COLORS'));
-        embeds.push(getRoleEmbed('GAMES'));
-        embeds.push(getRoleEmbed('ICONS'));
+    if (type === roleTypes.all) {
+        embeds.push(getRoleEmbed(roleTypes.colors));
+        embeds.push(getRoleEmbed(roleTypes.games));
+        embeds.push(getRoleEmbed(roleTypes.icon));
     } else {
         embeds.push(getRoleEmbed(type));
     }
@@ -183,10 +199,12 @@ module.exports = {
             .addStringOption(option =>
                 option.setName('type')
                 .setDescription('Type of roles to view.')
-                .addChoice('all', 'ALL')
-                .addChoice('colors', 'COLORS')
-                .addChoice('icons', 'ICONS')
-                .addChoice('games', 'GAMES')
+                .addChoices(
+                    { name: roleTypes.all, value: roleTypes.all },
+                    { name: roleTypes.colors, value: roleTypes.colors },
+                    { name: roleTypes.icons, value: roleTypes.icons },
+                    { name: roleTypes.games, value: roleTypes.games }
+                )
                 .setRequired(true)
             )
         ),

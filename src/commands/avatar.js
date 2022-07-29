@@ -1,5 +1,4 @@
-const { MessageAttachment } = require('discord.js');
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { AttachmentBuilder, SlashCommandBuilder } = require('discord.js');
 
 function getGuildAvatar(interaction) {
     return interaction.guild.iconURL();
@@ -42,7 +41,7 @@ module.exports = {
             }
         }
 
-        image = new MessageAttachment(avatar);
+        image = new AttachmentBuilder(avatar);
         interaction.reply({
             files: [image]
         });

@@ -1,17 +1,16 @@
-const { MessageEmbed } = require('discord.js');
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 const { colors } = require('../data/Static');
 const { AMMO: ammo, MAPS: maps } = require('../data/EscapeFromTarkov');
 
 function getAmmoInfo(ammoType) {
-    return new MessageEmbed()
+    return new EmbedBuilder()
         .setTitle(`Escape From Tarkov Ammo - ${ammo[ammoType].name}`)
         .setDescription(ammo[ammoType].description)
         .setColor(colors.teal);
 }
 
 function getMapInfo(mapName) {
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
         .setTitle(`Escape From Tarkov - ${maps[mapName].name}`)
         .setImage(maps[mapName].url)
         .setColor(colors.teal);
@@ -32,7 +31,7 @@ module.exports = {
                 .setRequired(true);
 
                 for (const [key, value] of Object.entries(ammo)) {
-                    option.addChoice(value.name, key);
+                    option.addChoices({ name: value.name, value: key });
                 }
 
                 return option;
@@ -47,7 +46,7 @@ module.exports = {
                 .setRequired(true);
         
                 for (const [key, value] of Object.entries(maps)) {
-                    option.addChoice(value.name, key);
+                    option.addChoices({ name: value.name, value: key });
                 }
         
                 return option;
@@ -100,4 +99,4 @@ module.exports = {
         }
     },
     channels: ["escape-from-tarkov"]
-};
+}

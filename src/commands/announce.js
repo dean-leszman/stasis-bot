@@ -1,11 +1,11 @@
-const { MessageEmbed, Permissions } = require('discord.js');
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { EmbedBuilder, PermissionFlagsBits, SlashCommandBuilder, ColorResolvable } = require('discord.js');
 const { colors } = require('../data/Static');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('announce')
         .setDescription('Create an announcement')
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .addStringOption(option => 
             option.setName('title')
             .setDescription('Announcement title')
@@ -23,8 +23,8 @@ module.exports = {
     async execute(interaction) {
         const title = interaction.options.getString('title');
         const message = interaction.options.getString('message');
-
-        const embed = new MessageEmbed()
+        
+        const embed = new EmbedBuilder()
             .setTitle(title)
             .setDescription(message)
             .setAuthor({
@@ -36,8 +36,5 @@ module.exports = {
         interaction.reply({
             embeds: [embed]
         });
-    },
-    permissions: {
-        command: [Permissions.FLAGS.ADMINISTRATOR]
     }
 }

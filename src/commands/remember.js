@@ -1,5 +1,4 @@
-const { MessageAttachment } = require('discord.js');
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { AttachmentBuilder, SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -7,7 +6,7 @@ module.exports = {
         .setDescription('You will remember that...'),
     async execute(interaction) {
         if (interaction.member.id == 128942677759623168) { // wulfric
-            image = new MessageAttachment('./assets/wrememberthat.png');
+            image = new AttachmentBuilder('./assets/wrememberthat.png');
             interaction.reply({
                 files: [image]
             });

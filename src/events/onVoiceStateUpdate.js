@@ -1,5 +1,5 @@
+const { ChannelType } = require('discord.js');
 const { channel: config, voiceChannels, voiceChannelCreator } = require('../data/Config');
-const { ChannelType } = require('discord-api-types/v9');
 
 module.exports = {
     name: 'voiceStateUpdate',
@@ -20,8 +20,9 @@ module.exports = {
     
         if (newState.channel) {
             if (newState.channel.name === voiceChannelCreator) {
-                const categoryChannel = newState.guild.channels.cache.find(x => x.type === 'GUILD_CATEGORY' && x.name === config.categoryName);
-                categoryChannel.createChannel(`🎮 ${newState.member.displayName}'s Room`, {
+                const categoryChannel = newState.guild.channels.cache.find(x => x.type === ChannelType.GuildCategory && x.name === config.categoryName);
+                categoryChannel.children.create({
+                    name: `🎮 ${newState.member.displayName}'s Room`,
                     type: ChannelType.GuildVoice
                 })
                 .then((channel) => {

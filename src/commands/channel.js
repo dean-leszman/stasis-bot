@@ -1,7 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { channel: config } = require('../data/Config');
-const { Permissions } = require('discord.js');
-const { ChannelType } = require('discord-api-types/v9');
+const { ChannelType, OverwriteType, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -16,16 +15,26 @@ module.exports = {
         await interaction.deferReply({ ephemeral: true });
 
         const userLimit = interaction.options.getInteger('max_users');
-        
-        const categoryChannel = interaction.guild.channels.cache.find(x => x.type === 'GUILD_CATEGORY' && x.name === config.categoryName);
 
-        categoryChannel.createChannel(`🎮 ${interaction.member.displayName}'s Room`, {
+        const categoryChannel = interaction.guild.channels.cache.find(x => x.type === ChannelType.GuildCategory && x.name === config.categoryName);
+
+        if (!categoryChannel) {
+            console.error(`Unable to find ${config.categoryName} channel category.`);
+            await interaction.editReply({
+                content: 'Failed to create channel.',
+                ephemeral: true
+            });
+            return;
+        }
+
+        categoryChannel.children.create({
+            name: `🎮 ${interaction.member.displayName}'s Room`,
             type: ChannelType.GuildVoice,
             userLimit: userLimit,
             permissionOverwrites: [{
-                allow: Permissions.FLAGS.MOVE_MEMBERS,
+                allow: [PermissionFlagsBits.MoveMembers],
                 id: interaction.member.id,
-                type: 'member'
+                type: OverwriteType.Member
             }]
         })
         .then(async channel => {
