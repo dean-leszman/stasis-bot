@@ -25,10 +25,9 @@ function isProtectedRole(role, roles) {
     return false;
 }
 
-function getRoleEmbed(type) {
-    const embed = new EmbedBuilder()
-        .setColor(colors.teal);
-    
+function getRoleEmbed(interaction, type) {
+    const embed = new EmbedBuilder().setColor(colors.teal);
+
     let roles;
     switch (type) {
         case roleTypes.colors: {
@@ -48,8 +47,10 @@ function getRoleEmbed(type) {
         }
     }
 
+    const guildRoles = interaction.guild.roles.cache.filter(x => roles.includes(x.name)).sort((a, b) => a.name.localeCompare(b.name));
+
     let description = '';
-    roles.forEach(role => {
+    guildRoles.forEach(role => {
         description += `${roleMention(role.id)}\n`;
     });
 
@@ -155,11 +156,10 @@ function handleViewRoles(interaction) {
 
     let embeds = [];
     if (type === roleTypes.all) {
-        embeds.push(getRoleEmbed(roleTypes.colors));
-        embeds.push(getRoleEmbed(roleTypes.games));
-        embeds.push(getRoleEmbed(roleTypes.icon));
+        const types = Object.keys(roleTypes).filter(x => x !== roleTypes.all);
+        types.forEach(t => embeds.push(getRoleEmbed(interaction, t)));
     } else {
-        embeds.push(getRoleEmbed(type));
+        embeds.push(getRoleEmbed(interaction, type));
     }
 
     interaction.reply({
