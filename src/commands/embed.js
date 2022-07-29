@@ -1,9 +1,8 @@
-const { MessageEmbed, Permissions } = require('discord.js');
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { EmbedBuilder, PermissionFlagsBits, SlashCommandBuilder } = require('discord.js');
 const { colors } = require('../data/Static');
 
 function getHelpEmbed() {
-    return new MessageEmbed()
+    return new EmbedBuilder()
         .setTitle("Embed Help")
         .setDescription("Create a custom embed using flag-separated values.")
         .addFields({
@@ -35,7 +34,7 @@ function getHelpEmbed() {
 
 function parseEmbedString(interaction, data) {
     // Title
-    let embed = new MessageEmbed()
+    let embed = new EmbedBuilder()
         .setTitle('Title')
         .setColor(colors.teal);
 
@@ -54,61 +53,61 @@ function parseEmbedString(interaction, data) {
     const field1name = data.match(/(?<=--field1name=")([^"]+)(?=")/ig);
     const field1value = data.match(/(?<=--field1value=")([^"]+)(?=")/ig);
     if (field1name && field1name.length === 1 && field1value && field1value.length) {
-        embed.addField(field1name[0], field1value[0]);
+        embed.addFields({ name: field1name[0], value: field1value[0] });
     }
     
     const field2name = data.match(/(?<=--field2name=")([^"]+)(?=")/ig);
     const field2value = data.match(/(?<=--field2value=")([^"]+)(?=")/ig);
     if (field2name && field2name.length === 1 && field2value && field2value.length) {
-        embed.addField(field2name[0], field2value[0]);
+        embed.addFields({ name: field2name[0], value: field2value[0] });
     }
     
     const field3name = data.match(/(?<=--field3name=")([^"]+)(?=")/ig);
     const field3value = data.match(/(?<=--field3value=")([^"]+)(?=")/ig);
     if (field3name && field3name.length === 1 && field3value && field3value.length) {
-        embed.addField(field3name[0], field3value[0]);
+        embed.addFields({ name: field3name[0], value: field3value[0] });
     }
     
     const field4name = data.match(/(?<=--field4name=")([^"]+)(?=")/ig);
     const field4value = data.match(/(?<=--field4value=")([^"]+)(?=")/ig);
     if (field4name && field4name.length === 1 && field4value && field4value.length) {
-        embed.addField(field4name[0], field4value[0]);
+        embed.addFields({ name: field4name[0], value: field4value[0] });
     }
 
     const field5name = data.match(/(?<=--field5name=")([^"]+)(?=")/ig);
     const field5value = data.match(/(?<=--field5value=")([^"]+)(?=")/ig);
     if (field5name && field5name.length === 1 && field5value && field5value.length) {
-        embed.addField(field5name[0], field5value[0]);
+        embed.addFields({ name: field5name[0], value: field5value[0] });
     }
 
     const field6name = data.match(/(?<=--field6name=")([^"]+)(?=")/ig);
     const field6value = data.match(/(?<=--field6value=")([^"]+)(?=")/ig);
     if (field6name && field6name.length === 1 && field6value && field6value.length) {
-        embed.addField(field6name[0], field6value[0]);
+        embed.addFields({ name: field6name[0], value: field6value[0] });
     }
 
     const field7name = data.match(/(?<=--field7name=")([^"]+)(?=")/ig);
     const field7value = data.match(/(?<=--field7value=")([^"]+)(?=")/ig);
     if (field7name && field7name.length === 1 && field7value && field7value.length) {
-        embed.addField(field7name[0], field7value[0]);
+        embed.addFields({ name: field7name[0], value: field7value[0] });
     }
 
     const field8name = data.match(/(?<=--field8name=")([^"]+)(?=")/ig);
     const field8value = data.match(/(?<=--field8value=")([^"]+)(?=")/ig);
     if (field8name && field8name.length === 1 && field8value && field8value.length) {
-        embed.addField(field8name[0], field8value[0]);
+        embed.addFields({ name: field8name[0], value: field8value[0] });
     }
 
     const field9name = data.match(/(?<=--field9name=")([^"]+)(?=")/ig);
     const field9value = data.match(/(?<=--field9value=")([^"]+)(?=")/ig);
     if (field9name && field9name.length === 1 && field9value && field9value.length) {
-        embed.addField(field9name[0], field9value[0]);
+        embed.addFields({ name: field9name[0], value: field9value[0] });
     }
 
     const field10name = data.match(/(?<=--field10name=")([^"]+)(?=")/ig);
     const field10value = data.match(/(?<=--field10value=")([^"]+)(?=")/ig);
     if (field10name && field10name.length === 1 && field10value && field10value.length) {
-        embed.addField(field10name[0], field10value[0]);
+        embed.addFields({ name: field10name[0], value: field10value[0] });
     }
 
     // Image
@@ -168,7 +167,7 @@ function parseEmbedString(interaction, data) {
         const iconURL = authorIcon && authorIcon.length === 1 ? authorIcon[0] : null;
         const url = authorUrl && authorUrl.length === 1 ? authorUrl[0] : null;
 
-        this.embed.setAuthor({
+        embed.setAuthor({
             name: name, 
             iconURL: iconURL, 
             url: url
@@ -182,6 +181,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('embed')
         .setDescription('Create a custom embed.')
+        .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages)
         .addStringOption(option =>
             option.setName('text')
             .setDescription('Embed string. Type \'help\' for embed flags.')
@@ -204,8 +204,5 @@ module.exports = {
             content: `Embed created successfully:\n${text}`,
             ephemeral: true
         });
-    },
-    permissions: {
-        command: [Permissions.FLAGS.MANAGE_MESSAGES]
-    },
+    }
 }

@@ -27,7 +27,7 @@ module.exports = {
         name: "**Immigration Control**",
         value: "All traffic through the border must present a valid citizen identity card or visa permit."
     }],
-    textChannels: "628924587702222868", // Games category
+    textChannelsCategory: "Games", // Games category
     voiceChannels: [ // Names of voice channels that should not be deleted
         "Channel Creator",
         "Big Boi Lounge"

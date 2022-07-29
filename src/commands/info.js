@@ -1,12 +1,11 @@
-const { MessageEmbed } = require('discord.js');
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 const { colors } = require('../data/Static');
 const { getBoostTier } = require('../util');
 
 function showServerInfo(interaction) {
     const server = interaction.guild;
 
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
         .setTitle(server.name)
         .setDescription(
             `**Created:** ${server.createdAt.toLocaleDateString('en-GB')}\n` +
@@ -26,7 +25,7 @@ function showUserInfo(interaction) {
     const guildMember = interaction.guild.members.cache.find(member => member.id === user.id);
 
     const name = guildMember.nickname ? guildMember.nickname : guildMember.user.username;
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
         .setTitle(name)
         .setDescription(
             `**ID:** ${guildMember.id}\n` +
@@ -74,4 +73,4 @@ module.exports = {
         }
     },
     channels: ["bot-commands"]
-};
+}

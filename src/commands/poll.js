@@ -1,5 +1,4 @@
-const { MessageEmbed } = require('discord.js');
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 const { colors } = require('../data/Static');
 
 const optionEmojis = ["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","8️⃣","9️⃣"];
@@ -16,7 +15,7 @@ function addReactions(message, count) {
 
 
 function createEmbed(title, options) {
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
         .setTitle(title)
         .setColor(colors.teal);
 
@@ -49,10 +48,10 @@ async function createPoll(interaction) {
 }
 
 function getHelpEmbed() {
-    return new MessageEmbed()
+    return new EmbedBuilder()
         .setTitle('/poll - Help')
         .setDescription('Create a reaction-based poll.\nMinimum 1 option. Maximum 9 options.')
-        .addField('**Command Usage**', '`/poll title="Poll title" option_1="Your first option"...`');
+        .addFields({ name: '**Command Usage**', value: '`/poll title="Poll title" option_1="Your first option"...`' });
 }
 
 module.exports = {
