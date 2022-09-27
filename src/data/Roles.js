@@ -54,6 +54,7 @@ module.exports = {
         'Forza',
         'Garrys Mod',
         'Grand Theft Auto',
+        'Grounded',
         'Halo',
         'Hunt Showdown',
         'League of Legends',
