@@ -5,7 +5,6 @@ const { colorRoles, iconRoles, gameRoles } = require('../data/Roles');
 const { colors } = require('../data/Static');
 
 const roleTypes = {
-    all: 'all',
     colors: 'colors',
     games: 'games',
     icons: 'icons'
@@ -135,7 +134,7 @@ function handleViewHelp(interaction) {
             name: 'View role help - `/role help`', 
             value: 'You know how to do this already. Good job!' 
         }, { 
-            name: 'View available roles - `/role list <all|colors|icons|games>`', 
+            name: 'View available roles - `/role list <colors|icons|games>`', 
             value: 'e.g. `/role list games`' 
         }, {
             name: 'Join a role - `/role join <Role Name>`', 
@@ -154,13 +153,7 @@ function handleViewHelp(interaction) {
 function handleViewRoles(interaction) {
     const type = interaction.options.getString('type');
 
-    let embeds = [];
-    if (type === roleTypes.all) {
-        const types = Object.keys(roleTypes).filter(x => x !== roleTypes.all);
-        types.forEach(t => embeds.push(getRoleEmbed(interaction, t)));
-    } else {
-        embeds.push(getRoleEmbed(interaction, type));
-    }
+    let embeds = [getRoleEmbed(interaction, type)];
 
     interaction.reply({
         embeds: embeds
@@ -200,7 +193,6 @@ module.exports = {
                 option.setName('type')
                 .setDescription('Type of roles to view.')
                 .addChoices(
-                    { name: roleTypes.all, value: roleTypes.all },
                     { name: roleTypes.colors, value: roleTypes.colors },
                     { name: roleTypes.icons, value: roleTypes.icons },
                     { name: roleTypes.games, value: roleTypes.games }
