@@ -26,6 +26,7 @@ module.exports = {
     ],
     iconRoles: [
         'Blue Gem',
+        'Cat',
         'Gun',
         'Hydrohomie',
         'Orange Gem',
