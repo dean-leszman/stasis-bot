@@ -1,0 +1,21 @@
+module.exports = [
+    "https://i.imgur.com/SNugI27.png",
+    "https://i.imgur.com/VfzeEBI.png",
+    "https://i.imgur.com/1qFbnsY.png",
+    "https://i.imgur.com/piOFNmn.png",
+    "https://i.imgur.com/b51GzIH.png",
+    "https://cdn.discordapp.com/attachments/869643919858757662/1034205381062316042/unknown.png",
+    "https://media.tenor.com/ciNDyf6AgH0AAAAd/disappointed-disappointed-fan.gif",
+    "https://i.imgur.com/avNyq0f.mp4",
+    "https://i.imgur.com/ITDRoWV.png",
+    "https://media.tenor.com/pR8dHMj9qFQAAAAC/marge-simpson-shocked.gif",
+    "https://i.imgur.com/EfhdUJo.mp4",
+    "https://i.imgur.com/tpXlfOV.gif",
+    "https://media.tenor.com/vS4bczRX7swAAAAd/cat.gif",
+    "https://i.imgur.com/jfN4bgf.png",
+    "https://media.tenor.com/5c9Owod1dSsAAAAC/infinite-infinito.gif",
+    "https://i.imgur.com/bcjZGc2.png",
+    "https://i.imgur.com/QAlsK9E.mp4",
+    "https://i.imgur.com/UxicAhw.mp4",
+    "https://i.imgur.com/CfaDWjZ.mp4"
+]
