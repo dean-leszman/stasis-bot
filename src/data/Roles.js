@@ -46,6 +46,7 @@ module.exports = {
         'Call of Duty',
         'Conan Exiles',
         'Counter Strike',
+        'Darktide',
         'Destiny',
         'DOTA',
         'Eco',
