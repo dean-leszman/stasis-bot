@@ -17,6 +17,43 @@ module.exports = {
         ["Coral Ruins", "Cursed Crypt", "Dry Sea", "Ivory Temple", "Summit"],
         ["Ashen Wood", "Crimson Temple", "Dungeon", "Port", "Vaal Temple"]
     ],
+    builds: [{
+        ascendancy: "Champion",
+        builds: [{
+            name: "Explosive Arrow",
+            link: "https://www.youtube.com/watch?v=KLFV3L4eQ7A"
+        }]
+    }, {
+        ascendancy: "Guardian",
+        builds: [{
+            name: "Summoner (Skeletons + Raging Spirits)",
+            link: "https://www.youtube.com/watch?v=EntDk7PVxVs"
+        }]
+    }, {
+        ascendancy: "Necromancer",
+        builds: [{
+            name: "Summoner (Skeletons + Raging Spirits)",
+            link: "https://www.youtube.com/watch?v=EntDk7PVxVs"
+        }]
+    }, {
+        ascendancy: "Occultist",
+        builds: [{
+            name: "Blade Vortex",
+            link: "https://www.youtube.com/watch?v=5d_RxWDlinE"
+        }]
+    }, {
+        ascendancy: "Pathfinder",
+        builds: [{
+            name: "Toxic Rain",
+            link: "https://www.youtube.com/watch?v=5RB_v5akxOY"
+        }]
+    }, {
+        ascendancy: "Saboteur",
+        builds: [{
+            name: "Seismic Trap",
+            link: "https://www.youtube.com/watch?v=IRC9wSHSVKs"
+        }]
+    }],
     leagues: {
         'BETRAYAL': {
             name: 'Betrayal',

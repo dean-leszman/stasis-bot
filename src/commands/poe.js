@@ -1,6 +1,27 @@
 const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
-const { atlas, leagues, links } = require('../data/PathOfExile');
+const { atlas, builds, leagues, links } = require('../data/PathOfExile');
 const { colors } = require('../data/Static');
+
+function getBuildsEmbed() {
+    const embed = new EmbedBuilder()
+        .setTitle("Path of Exile Builds")
+        .setColor(colors.orange);
+
+    builds.forEach(ascendancy => {
+        let currentBuilds = "";
+        
+        ascendancy.builds.forEach(build => {
+            currentBuilds += `[${build.name}](${build.link})`;
+        });
+
+        embed.addFields({
+            name: ascendancy.ascendancy,
+            value: currentBuilds
+        });
+    });
+
+    return embed;
+}
 
 function getLinksEmbed() {
     const embed = new EmbedBuilder().setTitle("Path of Exile Links").setColor(colors.orange);
@@ -36,6 +57,9 @@ module.exports = {
             subcommand.setName('atlas')
             .setDescription('View all map tiers for the Atlas.')
         )
+        .addSubcommand(subcommand =>
+            subcommand.setName('builds')
+            .setDescription('View suggested builds for the current league.'))
         .addSubcommand(subcommand => 
             subcommand.setName('league')
             .setDescription('League-specific cheatsheets.')
@@ -71,6 +95,11 @@ module.exports = {
                 });
                 break;
             }
+            case 'builds':
+                interaction.reply({
+                    embeds: [getBuildsEmbed()]
+                });
+                break;
             case 'league': {
                 const leagueName = interaction.options.getString('league_name');
                 interaction.reply({
