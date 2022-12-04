@@ -59,7 +59,7 @@ module.exports = {
             name: "[3.19] Absolution",
             link: "https://www.youtube.com/watch?v=-OMiuuJTT6E"
         }, {
-            name: "Summoner (Skeletons + Raging Spirits)",
+            name: "[3.20] Summoner (Skeletons + Raging Spirits)",
             link: "https://www.youtube.com/watch?v=EntDk7PVxVs"
         }]
     }, {
