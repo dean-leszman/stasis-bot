@@ -20,37 +20,73 @@ module.exports = {
     builds: [{
         ascendancy: "Champion",
         builds: [{
-            name: "Explosive Arrow",
+            name: "[3.20] Explosive Arrow",
             link: "https://www.youtube.com/watch?v=KLFV3L4eQ7A"
+        }]
+    }, {
+        ascendancy: "Deadeye",
+        builds: [{
+            name: "[3.19] Venom Gyre",
+            link: "https://www.youtube.com/watch?v=UNrg63Kltgo"
+        }]
+    }, {
+        ascendancy: "Elementalist",
+        builds: [{
+            name: "[3.19] Lightning Conduit",
+            link: "https://www.youtube.com/watch?v=GGnpVhm-8dU"
+        }]
+    }, {
+        ascendancy: "Gladiator",
+        builds: [{
+            name: "[3.19] Corrupting Fever + Kinetic Blast",
+            link: "https://poe.maxroll.gg/build-guides/corrupting-fever-gladiator-league-starter-guide"
         }]
     }, {
         ascendancy: "Guardian",
         builds: [{
-            name: "Summoner (Skeletons + Raging Spirits)",
+            name: "[3.20] Summoner (Skeletons + Raging Spirits)",
             link: "https://www.youtube.com/watch?v=EntDk7PVxVs"
+        }]
+    }, {
+        ascendancy: "Inquisitor",
+        builds: [{
+            name: "[3.19] Righteous Fire",
+            link: "https://www.youtube.com/watch?v=1_MZMwcPtIs"
         }]
     }, {
         ascendancy: "Necromancer",
         builds: [{
+            name: "[3.19] Absolution",
+            link: "https://www.youtube.com/watch?v=-OMiuuJTT6E"
+        }, {
             name: "Summoner (Skeletons + Raging Spirits)",
             link: "https://www.youtube.com/watch?v=EntDk7PVxVs"
         }]
     }, {
         ascendancy: "Occultist",
         builds: [{
-            name: "Blade Vortex",
+            name: "[3.20] Blade Vortex",
             link: "https://www.youtube.com/watch?v=5d_RxWDlinE"
+        }, {
+            name: "[3.19] Bladefall + Blade Blast",
+            link: "https://www.youtube.com/watch?v=SWtotH14WDY"
         }]
     }, {
         ascendancy: "Pathfinder",
         builds: [{
-            name: "Toxic Rain",
+            name: "[3.20] Toxic Rain",
             link: "https://www.youtube.com/watch?v=5RB_v5akxOY"
+        }]
+    }, {
+        ascendancy: "Raider",
+        builds: [{
+            name: "[3.19] Spectral Helix",
+            link: "https://www.youtube.com/watch?v=Vv3tjc7Mzdk"
         }]
     }, {
         ascendancy: "Saboteur",
         builds: [{
-            name: "Seismic Trap",
+            name: "[3.20] Seismic Trap",
             link: "https://www.youtube.com/watch?v=IRC9wSHSVKs"
         }]
     }],

@@ -11,7 +11,7 @@ function getBuildsEmbed() {
         let currentBuilds = "";
         
         ascendancy.builds.forEach(build => {
-            currentBuilds += `[${build.name}](${build.link})`;
+            currentBuilds += `[${build.name}](${build.link})\n`;
         });
 
         embed.addFields({
