@@ -32,6 +32,9 @@ module.exports = {
     }, {
         ascendancy: "Elementalist",
         builds: [{
+            name: "[3.20] Explosive Arrow Ballista",
+            link: "https://www.youtube.com/watch?v=grWNV7YLvIc"
+        }, {
             name: "[3.19] Lightning Conduit",
             link: "https://www.youtube.com/watch?v=GGnpVhm-8dU"
         }]
@@ -59,12 +62,18 @@ module.exports = {
             name: "[3.19] Absolution",
             link: "https://www.youtube.com/watch?v=-OMiuuJTT6E"
         }, {
+            name: "[3.20] Dark Pact",
+            link: "https://www.youtube.com/watch?v=XtO34CMuOkU"
+        }, {
             name: "[3.20] Summoner (Skeletons + Raging Spirits)",
             link: "https://www.youtube.com/watch?v=EntDk7PVxVs"
         }]
     }, {
         ascendancy: "Occultist",
         builds: [{
+            name: "[3.20] Bane",
+            link: "https://www.youtube.com/watch?v=OwkA7KYCDNo"
+        }, {
             name: "[3.20] Blade Vortex",
             link: "https://www.youtube.com/watch?v=5d_RxWDlinE"
         }, {
@@ -74,6 +83,9 @@ module.exports = {
     }, {
         ascendancy: "Pathfinder",
         builds: [{
+            name: "[3.20] Poisonous Concoction",
+            link: "https://www.youtube.com/watch?v=eSEIDoasiwg"
+        }, {
             name: "[3.20] Toxic Rain",
             link: "https://www.youtube.com/watch?v=5RB_v5akxOY"
         }]
@@ -88,6 +100,12 @@ module.exports = {
         builds: [{
             name: "[3.20] Seismic Trap",
             link: "https://www.youtube.com/watch?v=IRC9wSHSVKs"
+        }]
+    }, {
+        ascendancy: "Trickster",
+        builds: [{
+            name: "[3.20] Caustic Arrow Poison Ballista",
+            link: "https://www.youtube.com/watch?v=xYfXLC0JSnc"
         }]
     }],
     leagues: {
