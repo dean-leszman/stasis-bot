@@ -37,6 +37,9 @@ module.exports = {
         }, {
             name: "[3.19] Lightning Conduit",
             link: "https://www.youtube.com/watch?v=GGnpVhm-8dU"
+        }, {
+            name: "[3.20] Wave of Conviction Ignite",
+            link: "https://www.youtube.com/watch?v=nqxl8UsO5Cc"
         }]
     }, {
         ascendancy: "Gladiator",
@@ -106,6 +109,9 @@ module.exports = {
         builds: [{
             name: "[3.20] Caustic Arrow Poison Ballista",
             link: "https://www.youtube.com/watch?v=xYfXLC0JSnc"
+        }, {
+            name: "[3.20] Cold DoT",
+            link: "https://www.youtube.com/watch?v=UJfWk11D98k"
         }]
     }],
     leagues: {
