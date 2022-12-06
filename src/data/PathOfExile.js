@@ -54,7 +54,7 @@ module.exports = {
         ascendancy: "Inquisitor",
         builds: [{
             name: "[3.19] Righteous Fire",
-            link: "https://www.youtube.com/watch?v=1_MZMwcPtIs"
+            link: "https://www.poe-vault.com/guides/righteous-fire-inquisitor-build-guide"
         }]
     }, {
         ascendancy: "Necromancer",
