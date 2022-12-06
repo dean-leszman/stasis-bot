@@ -60,6 +60,12 @@ module.exports = {
             link: "https://www.poe-vault.com/guides/righteous-fire-inquisitor-build-guide"
         }]
     }, {
+        ascendancy: "Juggernaut",
+        builds: [{
+            name: "[3.20] Righteous Fire",
+            link: "https://pastebin.com/BSSQpce8"
+        }]
+    }, {
         ascendancy: "Necromancer",
         builds: [{
             name: "[3.19] Absolution",
