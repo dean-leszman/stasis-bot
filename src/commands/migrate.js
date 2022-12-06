@@ -68,5 +68,6 @@ module.exports = {
             ephemeral: true 
         });
     },
-    channels: ["bot-commands"]
+    channels: ["bot-commands"],
+    disabled: true
 }

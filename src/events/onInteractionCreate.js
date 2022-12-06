@@ -25,6 +25,15 @@ module.exports = {
         if (!command) return; // the command does not exist
 
         try {
+            const isDisabled = command.disabled === true;
+            if (isDisabled) {
+                await interaction.reply({
+                    content: 'That command is currently disabled.',
+                    ephemeral: true
+                });
+                return;
+            }
+
             const canUseInChannel = canUseCommandInChannel(interaction, command);
             if (!canUseInChannel) {
                 const commandChannels = interaction.guild.channels.cache.filter(x => command.channels.includes(x.name)); // channels for this command
