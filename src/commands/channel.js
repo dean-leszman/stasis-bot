@@ -15,7 +15,6 @@ module.exports = {
         await interaction.deferReply({ ephemeral: true });
 
         const userLimit = interaction.options.getInteger('max_users');
-
         const categoryChannel = interaction.guild.channels.cache.find(x => x.type === ChannelType.GuildCategory && x.name === config.categoryName);
 
         if (!categoryChannel) {
@@ -38,11 +37,9 @@ module.exports = {
             }]
         })
         .then(async channel => {
-            interaction.client.channelCache.add(channel);
             setTimeout(async () => { // delete channel if nobody is in it after a duration
-                if (interaction.client.channelCache.has(channel) && !channel.members.first()) {
+                if (!(channel.fetch() && channel.members.first())) {
                     channel.delete();
-                    interaction.client.channelCache.delete(channel);
 
                     interaction.editReply({
                         content: 'Your channel was deleted for inactivity.',

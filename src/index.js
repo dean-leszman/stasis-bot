@@ -22,7 +22,6 @@ const client = new Client({
 });
 
 client.buttons = new Collection();
-client.channelCache = new WeakSet();
 client.commands = new Collection();
 client.contexts = new Collection();
 

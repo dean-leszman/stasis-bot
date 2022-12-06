@@ -7,8 +7,8 @@ module.exports = {
         if (oldState.channel) {
             if (!oldState.channel.members.first()) {
                 if (!voiceChannels.includes(oldState.channel.name)) {
-                    if (oldState.channel.client.channelCache.has(oldState.channel)) { // check channel is in cache
-                        oldState.channel.client.channelCache.delete(oldState.channel); // remove from cache
+                    const oldChannel = await oldState.channel.fetch();
+                    if (oldChannel) { // check channel is in cache
                         oldState.channel.delete()
                         .catch(err => {
                             console.error("[Channel Generator] Failed to delete channel: ", err);
@@ -26,7 +26,6 @@ module.exports = {
                     type: ChannelType.GuildVoice
                 })
                 .then((channel) => {
-                    newState.channel.client.channelCache.add(channel); // add to channel cache
                     newState.setChannel(channel); // move user to channel
                 });
             }

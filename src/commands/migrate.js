@@ -49,6 +49,15 @@ module.exports = {
             return;
         }
 
+        if (currentChannel.id === nextChannel.id) {
+            await interaction.followUp({
+                content: 'You are already in that channel!',
+                ephemeral: true
+            });
+            
+            return;
+        }
+
         const nextChannel = nextChannels.first();
         currentChannel.members.forEach(async member => {
             await member.voice.setChannel(nextChannel);
