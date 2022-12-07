@@ -1,22 +1,141 @@
 module.exports = {
-    atlas: [
-        ["Mesa", "Palace", "Underground Sea", "Vault"],
-        ["Arachnid Nest", "Basilica", "Cold River", "Flooded Mine", "Forking River", "Museum", "Shrine", "Waste Pool"],
-        ["Beach", "Colosseum", "Estuary", "Lava Chamber", "Mineral Pools", "Moon Temple", "Necropolis", "Toxic Sewer"],
-        ["Cemetery", "Conservatory", "Ghetto", "Mausoleum", "Overgrown Shrine", "Temple", "Thicket", "Tower"],
-        ["Bazaar", "Cage", "Cells", "Courtyard", "Coves", "Overgrown Ruin", "Promenade", "Shore"],
-        ["Arid Lake", "Atoll", "Channel", "City Square", "Crimson Township", "Dark Forest", "Jungle Valley"],
-        ["Arcade", "Bone Crypt", "Canyon", "Infested Valley", "Laboratory", "Malformation", "Silo"],
-        ["Arsenal", "Belfry", "Bramble Valley", "Defiled Cathedral", "Grotto", "Phantasmagoria", "Shipyard"],
-        ["Ancient City", "Armoury", "Fields", "Marshes", "Precinct", "Volcano"],
-        ["Acid Caverns", "Dunes", "Forbidden Woods", "Glacier", "Grave Trough", "Orchard"],
-        ["Caldera", "Desert Spring", "Graveyard", "Iceberg", "Lair", "Spider Forest"],
-        ["Dig", "Peninsula", "Stagnation", "Underground River", "Vaal Pyramid", "Wasteland"],
-        ["Carcass", "Frozen Cabins", "Gardens", "Lookout", "Plaza"],
-        ["Burial Chambers", "Haunted Mansion", "Maze", "Primordial Pool", "Strand"],
-        ["Coral Ruins", "Cursed Crypt", "Dry Sea", "Ivory Temple", "Summit"],
-        ["Ashen Wood", "Crimson Temple", "Dungeon", "Port", "Vaal Temple"]
-    ],
+    atlas: {
+        version: "3.20",
+        tiers: {
+            1: [
+                "Lava Lake",
+                "Mausoleum",
+                "Strand",
+                "Terrace"
+            ],
+            2: [
+                "Alleyways",
+                "Arachnid Tomb",
+                "Cage",
+                "Castle Ruins",
+                "Crimson Temple",
+                "Forking River",
+                "Moon Temple",
+                "Spider Forest"
+            ],
+            3: [
+                "Bone Crypt",
+                "Caldera",
+                "Coves",
+                "Museum",
+                "Phantasmagoria",
+                "Plateau",
+                "Port",
+                "Sepulchre"
+            ],
+            4: [
+                "Arachnid Nest",
+                "Atoll",
+                "Coral Ruins",
+                "Residence",
+                "Shore",
+                "Spider Lair",
+                "Thicket",
+                "Vaal Pyramid"
+            ],
+            5: [
+                "Acid Caverns",
+                "Bog",
+                "Courtyard",
+                "Ivory Temple",
+                "Laboratory",
+                "Pier",
+                "Silo",
+                "Temple"
+            ],
+            6: [
+                "Haunted Mansion",
+                "Iceberg",
+                "Overgrown Shrine",
+                "Peninsula",
+                "Promenade",
+                "Sulphur Vents",
+                "Volcano"
+            ],
+            7: [
+                "Burial Chambers",
+                "Crater",
+                "Factory",
+                "Frozen Cabins",
+                "Mineral Pools",
+                "Necropolis",
+                "Precinct"
+            ],
+            8: [
+                "Academy",
+                "Arsenal",
+                "Crimson Township",
+                "Dungeon",
+                "Estuary",
+                "Leyline",
+                "Primordial Blocks"
+            ],
+            9: [
+                "Arcade",
+                "Bazaar",
+                "Colosseum",
+                "Dark Forest",
+                "Desert",
+                "Primordial Pool"
+            ],
+            10: [
+                "Defiled Cathedral",
+                "Forbidden Woods",
+                "Gardens",
+                "Grave Trough",
+                "Lookout",
+                "Underground River"
+            ],
+            11: [
+                "City Square",
+                "Dry Sea",
+                "Infested Valley",
+                "Mesa",
+                "Villa",
+                "Wasteland"
+            ],
+            12: [
+                "Cemetery",
+                "Cold River",
+                "Colonnade",
+                "Courthouse",
+                "Cursed Crypt",
+                "Shipyard"
+            ],
+            13: [
+                "Channel",
+                "Lair",
+                "Orchard",
+                "Plaza",
+                "Shrine"
+            ],
+            14: [
+                "Canyon",
+                "Carcass",
+                "Maze",
+                "Sunken City",
+                "Underground Sea"
+            ],
+            15: [
+                "Ashen Wood",
+                "Dunes",
+                "Foundry",
+                "Grotto",
+                "Overgrown Ruin"
+            ],
+            16: [
+                "Ancient City",
+                "Ghetto",
+                "Graveyard",
+                "Toxic Sewer"
+            ]
+        }
+    },
     builds: [{
         ascendancy: "Champion",
         builds: [{
