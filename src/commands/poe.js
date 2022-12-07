@@ -2,6 +2,21 @@ const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 const { atlas, builds, leagues, links } = require('../data/PathOfExile');
 const { colors } = require('../data/Static');
 
+const getWikiPage = (query) => `https://www.poewiki.net/w/index.php${query ? '?search=' + encodeURIComponent(query) : ''}`;
+
+function findMapByName(name) {
+    for (const [tier, maps] of Object.entries(atlas.tiers)) {
+        const index = maps.findIndex(map => map.toLowerCase() === name.toLowerCase());
+        if (index > -1) {
+            return new EmbedBuilder()
+            .setTitle(`${maps[index]}`)
+            .setDescription(`${maps[index]} is a Tier ${tier} map in Path of Exile ${atlas.version}.\n[View wiki entry](${getWikiPage(maps[index] + " Map")})`);
+        }
+    }
+
+    return false;
+}
+
 function getBuildsEmbed() {
     const embed = new EmbedBuilder()
         .setTitle("Path of Exile Builds")
@@ -35,21 +50,28 @@ function getLinksEmbed() {
     return embed;
 }
 
-function getMapTiersEmbed() {
+function getMapTiersEmbed(tier) {
     const embed = new EmbedBuilder()
         .setTitle(`${atlas.version} Atlas Map Tiers`)
         .setColor(colors.orange);
 
-    for (const [tier, maps] of Object.entries(atlas.tiers)) {
-        let tierMaps = "";
-        maps.forEach(map => tierMaps += `${map}\n`);
-
+    if (tier) {
+        const tierMaps = atlas.tiers[tier].join('\n');
         embed.addFields({
             name: `__Tier ${tier}__`,
             value: tierMaps
-        });
+        })
+    } else {
+        for (const [tier, maps] of Object.entries(atlas.tiers)) {
+            const tierMaps = maps.join('\n');
+    
+            embed.addFields({
+                name: `__Tier ${tier}__`,
+                value: tierMaps
+            });
+        }
     }
-
+    
     return embed;
 }
 
@@ -61,6 +83,16 @@ module.exports = {
         .addSubcommand(subcommand =>
             subcommand.setName('atlas')
             .setDescription('View all map tiers for the Atlas.')
+            .addIntegerOption(option =>
+                option.setName('tier')
+                .setDescription('View specific Atlas map tier (1-16)')
+                .setMinValue(1)
+                .setMaxValue(16)
+            )
+            .addStringOption(option =>
+                option.setName('map')
+                .setDescription('Map to find')
+            )
         )
         .addSubcommand(subcommand =>
             subcommand.setName('builds')
@@ -95,8 +127,26 @@ module.exports = {
     async execute(interaction) {
         switch (interaction.options.getSubcommand()) {
             case 'atlas': {
+                const map = interaction.options.getString('map');
+                if (map) {
+                    const response = findMapByName(map);
+
+                    if (response === false) {
+                        interaction.reply({
+                            content: `Sorry, ${map} was not found in the current Atlas. Try \`/poe atlas\` to view the current Atlas.`,
+                            ephemeral: true
+                        });
+                    }
+
+                    interaction.reply({
+                        embeds: [response]
+                    });
+                    break;
+                }
+
+                const tier = interaction.options.getInteger('tier');
                 interaction.reply({
-                    embeds: [getMapTiersEmbed()]
+                    embeds: [getMapTiersEmbed(tier)]
                 });
                 break;
             }
@@ -121,7 +171,7 @@ module.exports = {
             case 'wiki': {
                 const query = interaction.options.getString('query');
                 interaction.reply({
-                    content: `<https://www.poewiki.net/w/index.php${query ? '?search=' + encodeURIComponent(query) : ''}>`
+                    content: `<${getWikiPage(query)}>`
                 });
                 break;
             }
