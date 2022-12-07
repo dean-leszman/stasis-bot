@@ -36,14 +36,19 @@ function getLinksEmbed() {
 }
 
 function getMapTiersEmbed() {
-    const embed = new EmbedBuilder().setTitle("3.17 Atlas Tiers").setColor(colors.orange);
-    atlas.map((tier, i) => {
+    const embed = new EmbedBuilder()
+        .setTitle(`${atlas.version} Atlas Map Tiers`)
+        .setColor(colors.orange);
+
+    for (const [tier, maps] of Object.entries(atlas.tiers)) {
         let tierMaps = "";
-        tier.forEach(map => {
-            tierMaps += `${map}\n`
+        maps.forEach(map => tierMaps += `${map}\n`);
+
+        embed.addFields({
+            name: `__Tier ${tier}__`,
+            value: tierMaps
         });
-        embed.addFields({ name: `__Tier ${i + 1}__`, value: tierMaps });
-    });
+    }
 
     return embed;
 }
