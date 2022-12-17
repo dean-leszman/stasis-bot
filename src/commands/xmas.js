@@ -1,7 +1,7 @@
 const { PermissionFlagsBits, SlashCommandBuilder } = require('discord.js');
 
 let _data = [];
-const filepath = "./assets/xmas.csv";
+const filepath = "./assets/test.csv";
 const fs = require("fs");
 const readline = require("readline");
 const logChannelId = "1052215121931403317"; // #gift-log
@@ -31,7 +31,7 @@ async function getData() {
                 recipientId,
                 event,
                 notes
-            }); // only load unclaimed prizes
+            });
         });
 
         reader.on('close', () => {
@@ -69,17 +69,13 @@ async function getPrize() {
     return new Promise((resolve) => {
         getData()
         .then(data => {
-            const random = Math.floor(Math.random() * data.length);
-            const prize = data[random];
-            resolve({ prize, index: random });
+            const prizes = data.filter(x => !x.recipient); // unclaimed prizes
+            const random = Math.floor(Math.random() * prizes.length);
+            const prize = prizes[random];
+            const index = data.findIndex(x => x.key === prize.key);
+            resolve({ prize, index });
         });
     });
-}
-
-function savePrize({ event, index, user }) {
-    _data[index].event = event;
-    _data[index].recipient = `${user.username}#${user.discriminator}`;
-    _data[index].recipientId = user.id;
 }
 
 function getUserMessage({ prize, user }) {
@@ -93,7 +89,7 @@ function getUserMessage({ prize, user }) {
     return message;
 }
 
-async function saveData() {
+async function saveData({ interaction }) {
     const arrayData = _data.map(row => {
         return [
             row.type,
@@ -112,15 +108,25 @@ async function saveData() {
 
     const csvData = arrayData.map(row => row.join(',')).join('\n');
 
-    await fs.writeFile(filepath, csvData, 'utf8', (error) => {
+    await fs.writeFile(filepath, csvData, 'utf8', async (error) => {
         if (error) {
             console.error(error);
+
+            const logChannel = await getLogChannel(interaction)
+            logChannel.send({ content: `Error while saving data: ${error.code}`})
+            .catch(console.error);
         } else {
             console.log("Giveaway data saved.");
         }
     });
+}
 
-    _data = [];
+async function savePrize({ event, index, interaction, user }) {
+    _data[index].event = event;
+    _data[index].recipient = `${user.username}#${user.discriminator}`;
+    _data[index].recipientId = user.id;
+
+    await saveData({ interaction });
 }
 
 async function sendToUser({ interaction, prize, user }) {
@@ -163,23 +169,23 @@ module.exports = {
         )
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
     async execute(interaction) {
-        interaction.deferReply({
+        await interaction.deferReply({
             ephemeral: true
         });
 
         const user = interaction.options.getUser('user');
         const event = interaction.options.getString('event');
+
         const { index, prize } = await getPrize();
-        await savePrize({ event, index, user });
+        await savePrize({ event, index, interaction, user });
+
         await sendToUser({ interaction, prize, user });
         await createLog({ event, interaction, prize, user });
 
-        interaction.followUp({
+        await interaction.followUp({
             content: "Prize awarded successfully.",
             ephemeral: true
         });
-
-        await saveData();
     },
     channels: ["bot-commands"]
 }
