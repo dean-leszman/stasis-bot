@@ -1,7 +1,7 @@
 const { PermissionFlagsBits, SlashCommandBuilder } = require('discord.js');
 
 let _data = [];
-const filepath = "./assets/test.csv";
+const filepath = "./assets/xmas.csv";
 const fs = require("fs");
 const readline = require("readline");
 const logChannelId = "1052215121931403317"; // #gift-log
