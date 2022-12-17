@@ -12,6 +12,8 @@ async function getData() {
             resolve(_data);
         }
 
+        _data = [];
+        
         // read csv into memory because I cba to set up a database
         const stream = fs.createReadStream(filepath);
         const reader = readline.createInterface({ input: stream });
