@@ -148,44 +148,86 @@ async function createLog({ event, interaction, prize, user }) {
     logChannel.send(message);
 }
 
+async function givePrize({ interaction }) {
+    await interaction.deferReply({
+        ephemeral: true
+    });
+
+    const user = interaction.options.getUser('user');
+    const event = interaction.options.getString('event');
+
+    const { index, prize } = await getPrize();
+    await savePrize({ event, index, interaction, user });
+
+    await sendToUser({ interaction, prize, user });
+    await createLog({ event, interaction, prize, user });
+
+    await interaction.followUp({
+        content: "Prize awarded successfully.",
+        ephemeral: true
+    });
+}
+
+async function getRemainingPrizes({ interaction }) {
+    await interaction.deferReply({ ephemeral: true });
+
+    const data = await getData();
+
+    const remaining = data.filter(x => !x.recipient).length;
+    const total = data.length;
+
+    await interaction.followUp({
+        content: `${remaining} of ${total} prizes remaining. (${total - remaining})`,
+        emphemeral: true
+    });
+}
+
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('xmas')
         .setDescription('It\'s Christmaaaaaaaaaaas!')
-        .addUserOption(option =>
-            option.setName('user')
-            .setDescription('The user to receive a prize.')
-            .setRequired(true)
-        )
-        .addStringOption(option =>
-            option.setName('event')
-            .setDescription('The type of event the prize was awarded from.')
-            .addChoices(
-                { name: 'Giveaway', value: 'Giveaway' },
-                { name: 'Game Night', value: 'Game Night'},
-                { name: 'Other', value: 'Other'}
+        .addSubcommand(cmd =>
+            cmd.setName('give')
+            .setDescription('Give out a prize')
+            .addUserOption(option =>
+                option.setName('user')
+                .setDescription('The user to receive a prize.')
+                .setRequired(true)
             )
-            .setRequired(true)
+            .addStringOption(option =>
+                option.setName('event')
+                .setDescription('The type of event the prize was awarded from.')
+                .addChoices(
+                    { name: 'Giveaway', value: 'Giveaway' },
+                    { name: 'Game Night', value: 'Game Night'},
+                    { name: 'Other', value: 'Other'}
+                )
+                .setRequired(true)
+            )
+        )
+        .addSubcommand(cmd =>
+            cmd.setName('remaining')
+            .setDescription('Get the number of remaining prizes')
         )
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
     async execute(interaction) {
-        await interaction.deferReply({
-            ephemeral: true
-        });
 
-        const user = interaction.options.getUser('user');
-        const event = interaction.options.getString('event');
+        switch (interaction.options.getSubcommand()) {
+            case 'give': {
+                await givePrize({ interaction });
+                break;
+            }
 
-        const { index, prize } = await getPrize();
-        await savePrize({ event, index, interaction, user });
+            case 'remaining': {
+                await getRemainingPrizes({ interaction });
+                break;
+            }
 
-        await sendToUser({ interaction, prize, user });
-        await createLog({ event, interaction, prize, user });
-
-        await interaction.followUp({
-            content: "Prize awarded successfully.",
-            ephemeral: true
-        });
+            default: {
+                interaction.reply({ content: 'wat?' });
+                break;
+            }
+        }
     },
     channels: ["bot-commands"]
 }
