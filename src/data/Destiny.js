@@ -37,6 +37,25 @@ module.exports = {
                 '[Riven of a Thousand Voices](https://www.shacknews.com/article/107313/destiny-2-last-wish-raid-guide#d2-riven)\n' +
                 '[Riven\'s Heart](https://www.shacknews.com/article/107313/destiny-2-last-wish-raid-guide#d2-riven-heart)'
         },
+        'KINGS_FALL': {
+            name: 'King\'s Fall',
+            description: '[Loot Table](https://imgur.com/a/mRD57Aw)\n\n' +
+                '[Entrance Encounter](https://i.imgur.com/21vdiIN.png)\n' +
+                '[Totems Encounter](https://i.imgur.com/rdFTjQM.png)\n' +
+                '[War Priest](https://i.imgur.com/9ZHlaLH.png)\n' +
+                '[Golgoroth](https://i.imgur.com/x3WIw4Y.png)\n' +
+                '[Daughters](https://i.imgur.com/KggbuuP.jpeg)\n' +
+                '[Oryx](https://i.imgur.com/iCDIGuB.jpeg)\n\n' +
+                '**__Full Raid Guide__**\n' +
+                '[Relics & Opening the gate](https://www.shacknews.com/article/131935/kings-fall-raid-guide-destiny-2#hive-portal)\n' +
+                '[Hive ship jumping puzzle](https://www.shacknews.com/article/131935/kings-fall-raid-guide-destiny-2#hive-ships)\n' +
+                '[Annihilator Totems](https://www.shacknews.com/article/131935/kings-fall-raid-guide-destiny-2#annihilator-totems)\n' +
+                '[The War Priest](https://www.shacknews.com/article/131935/kings-fall-raid-guide-destiny-2#warpriest)\n' +
+                '[Gologoroth](https://www.shacknews.com/article/131935/kings-fall-raid-guide-destiny-2#golgoroth)\n' +
+                '[Piston wall jumping puzzle](https://www.shacknews.com/article/131935/kings-fall-raid-guide-destiny-2#piston-wall)\n' +
+                '[Daughters of Oryx](https://www.shacknews.com/article/131935/kings-fall-raid-guide-destiny-2#daughters-of-oryx)\n' +
+                '[Oryx, The Taken King](https://www.shacknews.com/article/131935/kings-fall-raid-guide-destiny-2#oryx)'
+        },
         'VAULT_OF_GLASS': {
             name: 'Vault of Glass',
             description: '[Loot Table](https://images-ext-2.discordapp.net/external/8QpP1F6YvFRrPkKjsFIeqpTL4T7Wzj2v6htcc7FcfHQ/%3F2/https/i.imgur.com/NvCnIbB.png)\n\n' +
