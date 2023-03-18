@@ -56,6 +56,27 @@ module.exports = {
                 '[Daughters of Oryx](https://www.shacknews.com/article/131935/kings-fall-raid-guide-destiny-2#daughters-of-oryx)\n' +
                 '[Oryx, The Taken King](https://www.shacknews.com/article/131935/kings-fall-raid-guide-destiny-2#oryx)'
         },
+        'ROOT_OF_NIGHTMARES': {
+            name: "Root of Nightmares",
+            description: '[Loot Table](https://i.imgur.com/kiMStJ3.jpeg)\n\n' +
+                '**__Raid Guide__**\n' +
+                '[1st Encounter - Cataclysm](https://i.imgur.com/tMEMWQ8.jpg)\n' +
+                '[2nd Encounter - Scission](https://i.imgur.com/GLV7lb8.jpg)\n' +
+                '[3rd Encounter - Macrocosm](https://i.imgur.com/xgqQT42.jpg)\n' +
+                '[4th Encounter - Nezarec](https://i.imgur.com/U0ppm4M.jpg)\n\n' +
+                '**__Bonus Chests__**\n' +
+                '[Chest 1](https://i.imgur.com/i8xRYaT.png)\n' +
+                '[Chest 2](https://i.imgur.com/MDdNduU.png)\n\n' +
+                '**__Pattern Chest__**\n' +
+                '[Flower Location](https://i.imgur.com/ky4pvHU.jpeg)\n' +
+                '[Flower Order](https://i.imgur.com/HVoBdGw.jpeg)\n' +
+                '[Node 1](https://i.imgur.com/eymaLsY.jpeg)\n' +
+                '[Node 2](https://i.imgur.com/2Udvdlh.jpeg)\n' +
+                '[Node 3](https://i.imgur.com/0XOoDUr.jpeg)\n' +
+                'The pattern chest spawns underneath Nezarec\'s spire.\n' +
+                '*Note: Leaving the raid will reset the flower code.*\n' +
+                '*You must complete the Root of Nightmares raid in one run to get the chest.*'
+        },
         'VAULT_OF_GLASS': {
             name: 'Vault of Glass',
             description: '[Loot Table](https://images-ext-2.discordapp.net/external/8QpP1F6YvFRrPkKjsFIeqpTL4T7Wzj2v6htcc7FcfHQ/%3F2/https/i.imgur.com/NvCnIbB.png)\n\n' +
