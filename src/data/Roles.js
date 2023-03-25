@@ -82,6 +82,7 @@ module.exports = {
         'Tabletop Simulator',
         'Team Fortress 2',
         'Terraria',
+        'Valheim',
         'Vermintide',
         'VR',
         'War Thunder',
