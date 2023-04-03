@@ -45,6 +45,5 @@ module.exports = {
         interaction.reply({
             files: [image]
         });
-    },
-    channels: ['bot-commands']
+    }
 }

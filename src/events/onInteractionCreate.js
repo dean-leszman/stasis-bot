@@ -1,18 +1,4 @@
 const { channelMention } = require('@discordjs/builders');
-const { botCommandChannels, devChannels } = require('../data/Config');
-
-function canUseCommandInChannel(interaction, command) {
-    if (typeof command.channels === 'undefined' || !command.channels instanceof Array) return true; // not restricted
-
-    let channelName;
-    if (interaction.channel.isThread()) {
-        channelName = interaction.channel.parent.name
-    } else {
-        channelName = interaction.channel.name;
-    }
-
-    return devChannels.includes(channelName) || botCommandChannels.includes(channelName) || command.channels.includes(channelName);
-}
 
 module.exports = {
     name: 'interactionCreate',
@@ -25,29 +11,6 @@ module.exports = {
         if (!command) return; // the command does not exist
 
         try {
-            const isDisabled = command.disabled === true;
-            if (isDisabled) {
-                await interaction.reply({
-                    content: 'That command is currently disabled.',
-                    ephemeral: true
-                });
-                return;
-            }
-
-            const canUseInChannel = canUseCommandInChannel(interaction, command);
-            if (!canUseInChannel) {
-                const commandChannels = interaction.guild.channels.cache.filter(x => command.channels.includes(x.name)); // channels for this command
-                const globalChannels = interaction.guild.channels.cache.filter(x => botCommandChannels.includes(x.name)); // bot command channels
-                const allowedChannels = commandChannels.concat(globalChannels);
-                const channelMentions = allowedChannels.map(channel => channelMention(channel.id));
-
-                await interaction.reply({
-                    content: `You can not use that command in this channel. Please keep usage to the following channels:\n${channelMentions}.`,
-                    ephemeral: true
-                });
-                return;
-            }
-
             console.log(`${interaction.member.displayName} (${interaction.member.user.tag}) used '${interaction.commandName}'`);
             await command.execute(interaction);
         } catch (error) {

@@ -9,6 +9,5 @@ module.exports = {
             content: 'https://github.com/dean-leszman/stasis-bot',
             ephemeral: true
         });
-    },
-    channels: ["bot-commands"]
+    }
 }

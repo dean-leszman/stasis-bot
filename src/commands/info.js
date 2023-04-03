@@ -71,6 +71,5 @@ module.exports = {
                 break;
             }
         }
-    },
-    channels: ["bot-commands"]
+    }
 }
