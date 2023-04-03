@@ -2,8 +2,6 @@ module.exports = {
     server: {
         logChannel: '552985239174250517'
     },
-    botCommandChannels: ["bot-commands"],
-    devChannels: ["bot-magic"],
     channel: { // 
         categoryName: 'Voice',
         deleteTimeout: 15 // delete channel after n seconds if it is empty
@@ -27,9 +25,7 @@ module.exports = {
         name: "**Immigration Control**",
         value: "All traffic through the border must present a valid citizen identity card or visa permit."
     }],
-    textChannelsCategory: "Games", // Games category
     voiceChannels: [ // Names of voice channels that should not be deleted
-        "Christmas Games",
         "Channel Creator",
         "Big Boi Lounge"
     ],
