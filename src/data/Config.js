@@ -26,8 +26,7 @@ module.exports = {
         value: "All traffic through the border must present a valid citizen identity card or visa permit."
     }],
     voiceChannels: [ // Names of voice channels that should not be deleted
-        "Channel Creator",
-        "Big Boi Lounge"
+        "Channel Creator"
     ],
     voiceChannelCreator: "Channel Creator" // Name of voice channel that a member should join to automatically create their own channel
 }
