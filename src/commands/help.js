@@ -17,7 +17,8 @@ module.exports = {
             .setDescription(description);
 
         interaction.reply({
-            embeds: [embed]
+            embeds: [embed],
+            ephemeral: true
         });
     }
 }
