@@ -1,13 +1,6 @@
 const { EmbedBuilder, SlashCommandBuilder } = require('discord.js');
 const { colors } = require('../data/Static');
-const { AMMO: ammo, MAPS: maps } = require('../data/EscapeFromTarkov');
-
-function getAmmoInfo(ammoType) {
-    return new EmbedBuilder()
-        .setTitle(`Escape From Tarkov Ammo - ${ammo[ammoType].name}`)
-        .setDescription(ammo[ammoType].description)
-        .setColor(colors.teal);
-}
+const { maps } = require('../data/EscapeFromTarkov');
 
 function getMapInfo(mapName) {
     const embed = new EmbedBuilder()
@@ -25,17 +18,6 @@ module.exports = {
         .addSubcommand(subcommand =>
             subcommand.setName('ammo')
             .setDescription('View ammo details.')
-            .addStringOption(option => {
-                option.setName('ammo_type')
-                .setDescription('The type of ammo.')
-                .setRequired(true);
-
-                for (const [key, value] of Object.entries(ammo)) {
-                    option.addChoices({ name: value.name, value: key });
-                }
-
-                return option;
-            })
         )
         .addSubcommand(subcommand =>
             subcommand.setName('map')
@@ -67,10 +49,9 @@ module.exports = {
     async execute(interaction) {
         switch (interaction.options.getSubcommand()) {
             case 'ammo': {
-                embed = getAmmoInfo(interaction.options.getString('ammo_type'));
                 await interaction.reply({
-                    embeds: [embed]
-                });
+                    content: '<https://docs.google.com/spreadsheets/d/1l_8zSZg-viVTZ2bavMEIIKhix6mFTXuVHWcNKZgBrjQ/edit>'
+                })
                 return;
             }
             case 'map': {
