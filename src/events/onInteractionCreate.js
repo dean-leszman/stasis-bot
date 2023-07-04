@@ -1,3 +1,5 @@
+const { getTimestamp } = require('../util');
+
 module.exports = {
     name: 'interactionCreate',
     async execute(interaction) {
@@ -9,7 +11,7 @@ module.exports = {
         if (!command) return; // the command does not exist
 
         try {
-            console.log(`${interaction.member.displayName} (${interaction.member.user.tag}) used '${interaction.commandName}'`);
+            console.log(`${getTimestamp()} ${interaction.member.displayName} (${interaction.member.user.tag}) used '${interaction.commandName}'`);
             await command.execute(interaction);
         } catch (error) {
             console.error(error);

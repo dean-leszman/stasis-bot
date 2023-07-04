@@ -22,6 +22,10 @@ module.exports = {
             }
         }
     },
+    getTimestamp() {
+        const now = new Date();
+        return `${now.toLocaleDateString('en-gb')} ${now.toLocaleTimeString('en-gb')}`;
+    },
     trimString(string, length = 100) {
         return string.length > length ? string.substring(0, length - 3) + '...' : string;
     }
